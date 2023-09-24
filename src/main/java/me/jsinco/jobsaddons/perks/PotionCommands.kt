@@ -63,7 +63,7 @@ class PotionCommands(private val plugin: JobsAddons) : CommandExecutor {
     private fun potEffect(player: Player, potionEffectType: PotionEffectType) {
         player.addPotionEffect(PotionEffect(potionEffectType, 340, 0, false, false))
     }
-    // FIXME: CLEANUP
+    // FIXME: CLEANUP t
     fun potionCMDRunnables() {
         Bukkit.getScheduler().scheduleSyncRepeatingTask(plugin, {
             val players = List.copyOf(Bukkit.getOnlinePlayers())
