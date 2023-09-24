@@ -37,10 +37,12 @@ class Listeners(private val plugin: JobsAddons) : Listener {
     fun onPlayerJoin(event: PlayerJoinEvent) {
         val converter = LegacyConverter(plugin)
         converter.convertPlayerPermissions(event.player)
-        plugin.logger.info("Converted ${converter.getPermissionsModified()} permissions for ${event.player.name}")
+        val modified = converter.getPermissionsModified()
+        if (modified == 0) return
+        plugin.logger.info("Converted $modified permissions for ${event.player.name}")
         for (player in Bukkit.getOnlinePlayers()) {
             if (player.isOp) {
-                player.sendMessage(ColorUtils.colorcode(plugin.config.getString("prefix") + "Converted ${converter.getPermissionsModified()/2} legacy permissions for ${event.player.name} (T: ${converter.getPermissionsModified()})"))
+                player.sendMessage(ColorUtils.colorcode(plugin.config.getString("prefix") + "Converted ${modified/2} legacy permissions for ${event.player.name} (T: $modified)"))
             }
         }
     }
