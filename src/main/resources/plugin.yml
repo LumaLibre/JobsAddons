@@ -1,0 +1,59 @@
+name: JobsAddons
+version: '${version}'
+main: me.jsinco.jobsaddons.JobsAddons
+api-version: '1.20'
+depend: [Jobs, WorldGuard]
+commands:
+  absorption:
+    permission: jobsaddons.absorption
+    aliases: [absor]
+  fireresistance:
+    permission: jobsaddons.fireresistance
+    aliases: [fireres]
+  nightvision:
+    permission: jobsaddons.nightvision
+    aliases: [nv]
+  strength:
+    permission: jobsaddons.strength
+    aliases: [str]
+  haste:
+    permission: jobsaddons.haste
+  luck:
+    permission: jobsaddons.luck
+  speed:
+    permission: jobsaddons.speed
+  regeneration:
+    permission: jobsaddons.regeneration
+    aliases: [regen]
+  jumpboost:
+    permission: jobsaddons.jumpboost
+    aliases: [jb]
+  dolphinsgrace:
+    permission: jobsaddons.dolphinsgrace
+  triad:
+    permission: jobsaddons.triad
+  bottle:
+    permission: jobsaddons.bottle
+  blaze:
+    permission: jobsaddons.blaze
+  concrete:
+    permission: jobsaddons.concrete
+    aliases: [conc]
+  powder:
+    permission: jobsaddons.powder
+    aliases: [pow]
+  stripcolor:
+    permission: jobsaddons.stripcolor
+    aliases: [undye]
+  grass:
+    permission: jobsaddons.grass
+  dirt:
+    permission: jobsaddons.dirt
+  placehere:
+    permission: jobsaddons.placehere
+    aliases: [place, here]
+  strip:
+    permission: jobsaddons.strip
+  jobsperks:
+    description: Job Perks Command
+    aliases: [jobperks, jperks, perks]

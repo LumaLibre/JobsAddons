@@ -1,0 +1,47 @@
+package me.jsinco.jobsaddons.events
+
+import com.gamingmesh.jobs.api.JobsExpGainEvent
+import com.gamingmesh.jobs.api.JobsLevelUpEvent
+import com.gamingmesh.jobs.api.JobsPrePaymentEvent
+import me.jsinco.jobsaddons.JobsAddons
+import me.jsinco.jobsaddons.perks.DeliverPerks
+import me.jsinco.jobsaddons.util.AntiPayRegions
+import me.jsinco.jobsaddons.util.ColorUtils
+import org.bukkit.Bukkit
+import org.bukkit.event.EventHandler
+import org.bukkit.event.Listener
+import org.bukkit.event.player.PlayerJoinEvent
+
+class Listeners(private val plugin: JobsAddons) : Listener {
+    @EventHandler
+    fun onJobsLevelUp(event: JobsLevelUpEvent) {
+        val dP = DeliverPerks(plugin, event.player, event.job)
+        dP.claimJobPerks(event.level)
+    }
+
+    @EventHandler
+    fun onJobsPrePayout(event: JobsPrePaymentEvent) {
+        if (!AntiPayRegions.shouldPay(event.player.player)) {
+            event.isCancelled = true
+        }
+    }
+
+    @EventHandler
+    fun onJobsExpPayout(event: JobsExpGainEvent) {
+        if (!AntiPayRegions.shouldPay(event.player.player)) {
+            event.isCancelled = true
+        }
+    }
+
+    @EventHandler
+    fun onPlayerJoin(event: PlayerJoinEvent) {
+        val converter = LegacyConverter(plugin)
+        converter.convertPlayerPermissions(event.player)
+        plugin.logger.info("Converted ${converter.getPermissionsModified()} permissions for ${event.player.name}")
+        for (player in Bukkit.getOnlinePlayers()) {
+            if (player.isOp) {
+                player.sendMessage(ColorUtils.colorcode(plugin.config.getString("prefix") + "Converted ${converter.getPermissionsModified()/2} legacy permissions for ${event.player.name} (T: ${converter.getPermissionsModified()})"))
+            }
+        }
+    }
+}
