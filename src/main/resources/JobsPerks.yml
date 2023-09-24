@@ -154,93 +154,103 @@ Farmer:
       - "You have unlocked the Farmer III tag perk!"
 
 Fisherman:
-  Level:
-    - 20
-    - 35
-    - 45
-    - 45
-    - 75
-  Perk:
-    - 'eternaltags.tag.fisherman'
-    - 'jobsaddons.luck'
-    - 'eternaltags.tag.fisherman2'
-    - 'jobsaddons.dolphinsgrace'
-    - 'eternaltags.tag.fisherman3'
-  Message:
-    - "You have unlocked the Fisherman perk TAG!"
-    - "You have unlocked the Luck perk!"
-    - "You have unlocked the Fisherman II perk TAG!"
-    - "You have unlocked the Dolphin's Grace perk!"
-    - "You have unlocked the Fisherman III perk TAG!"
+  perks:
+    lvl20:
+      - 'lp user %player% permission set eternaltags.tag.fisherman true'
+    lvl35:
+      - 'lp user %player% permission set jobsaddons.luck true'
+    lvl45:
+      - 'lp user %player% permission set eternaltags.tag.fisherman2 true'
+      - 'lp user %player% permission set jobsaddons.dolphinsgrace true'
+    lvl75:
+      - 'lp user %player% permission set eternaltags.tag.fisherman3 true'
+  messages:
+    lvl20:
+      - "You have unlocked the Fisherman tag perk!"
+    lvl35:
+      - "You have unlocked the Luck command perk!"
+    lvl45:
+      - "You have unlocked the Fisherman II tag perk!"
+      - "You have unlocked the Dolphin's Grace command perk!"
+    lvl75:
+      - "You have unlocked the Fisherman III tag perk!"
 
 Hunter:
-  Level:
-    - 20
-    - 35
-    - 45
-    - 45
-    - 75
-  Perk:
-    - 'eternaltags.tag.hunter'
-    - 'jobsaddons.strength'
-    - 'eternaltags.tag.hunter2'
-    - 'jobsaddons.speed'
-    - 'eternaltags.tag.hunter3'
-  Message:
-    - "You have unlocked the Hunter perk TAG!"
-    - "You have unlocked the strength perk!"
-    - "You have unlocked the Hunter II perk TAG!"
-    - "You have unlocked the speed perk!"
-    - "You have unlocked the Hunter III perk TAG!"
+  perks:
+    lvl20:
+      - 'lp user %player% permission set eternaltags.tag.hunter true'
+    lvl35:
+      - 'lp user %player% permission set jobsaddons.strength true'
+    lvl45:
+      - 'lp user %player% permission set eternaltags.tag.hunter2 true'
+      - 'lp user %player% permission set jobsaddons.speed true'
+    lvl75:
+      - 'lp user %player% permission set eternaltags.tag.hunter3 true'
+  messages:
+    lvl20:
+      - "You have unlocked the Hunter tag perk!"
+    lvl35:
+      - "You have unlocked the Strength command perk!"
+    lvl45:
+      - "You have unlocked the Hunter II tag perk!"
+      - "You have unlocked the Speed command perk!"
+    lvl75:
+      - "You have unlocked the Hunter III tag perk!"
 
 Lumberjack:
-  Level:
-    - 20
-    - 30
-    - 35
-    - 45
-    - 45
-    - 55
-    - 75
-  Perk:
-    - 'eternaltags.tag.lumberjack'
-    - 'mcmmo.ability.woodcutting.treefeller'
-    - 'essentials.top'
-    - 'eternaltags.tag.lumberjack2'
-    - 'jobsaddons.haste'
-    - 'jobsaddons.strip'
-    - 'eternaltags.tag.lumberjack3'
-  Message:
-    - "You have unlocked the Lumberjack perk TAG!"
-    - "You have unlocked the Tree Feller perk!"
-    - "You have unlocked the Top perk!"
-    - "You have unlocked the Lumberjack II perk TAG!"
-    - "You have unlocked the Haste perk!"
-    - "You have unlocked the Strip perk!"
-    - "You have unlocked the Lumberjack III perk TAG!"
+  perks:
+    lvl20:
+      - 'lp user %player% permission set eternaltags.tag.lumberjack true'
+    lvl30:
+      - 'lp user %player% permission set mcmmo.ability.woodcutting.treefeller true'
+    lvl35:
+      - 'lp user %player% permission set essentials.top true'
+    lvl45:
+      - 'lp user %player% permission set eternaltags.tag.lumberjack2 true'
+      - 'lp user %player% permission set jobsaddons.haste true'
+    lvl55:
+      - 'lp user %player% permission set jobsaddons.strip true'
+    lvl75:
+      - 'lp user %player% permission set eternaltags.tag.lumberjack3 true'
+  messages:
+    lvl20:
+      - "You have unlocked the Lumberjack tag perk!"
+    lvl30:
+      - "You have unlocked the Tree Feller ability perk!"
+    lvl35:
+      - "You have unlocked the Top command perk!"
+    lvl45:
+      - "You have unlocked the Lumberjack II tag perk!"
+      - "You have unlocked the Haste command perk!"
+    lvl55:
+      - "You have unlocked the Strip command perk!"
+    lvl75:
+      - "You have unlocked the Lumberjack III tag perk!"
 
 Miner:
-  Level:
-    - 20
-    - 35
-    - 35
-    - 45
-    - 45
-    - 65
-    - 75
-  Perk:
-    - 'eternaltags.tag.miner'
-    - 'essentials.top'
-    - 'essentials.bottom'
-    - 'eternaltags.tag.miner2'
-    - 'jobsaddons.nightvision'
-    - 'jobsaddons.haste'
-    - 'eternaltags.tag.miner3'
-  Message:
-    - "You have unlocked the Miner perk TAG!"
-    - "You have unlocked the Top perk!"
-    - "You have unlocked the Bottom perk!"
-    - "You have unlocked the Miner II perk TAG!"
-    - "You have unlocked the Night Vision perk!"
-    - "You have unlocked the Haste perk!"
-    - "You have unlocked the Miner III perk TAG!"
+  perks:
+    lvl20:
+      - 'lp user %player% permission set eternaltags.tag.miner true'
+    lvl35:
+      - 'lp user %player% permission set essentials.top true'
+      - 'lp user %player% permission set essentials.bottom true'
+    lvl45:
+      - 'lp user %player% permission set eternaltags.tag.miner2 true'
+      - 'lp user %player% permission set jobsaddons.nightvision true'
+    lvl65:
+      - 'lp user %player% permission set jobsaddons.haste true'
+    lvl75:
+      - 'lp user %player% permission set eternaltags.tag.miner3 true'
+  messages:
+    lvl20:
+      - "You have unlocked the Miner tag perk!"
+    lvl35:
+      - "You have unlocked the Top command perk!"
+      - "You have unlocked the Bottom command perk!"
+    lvl45:
+      - "You have unlocked the Miner II tag perk!"
+      - "You have unlocked the Night Vision command perk!"
+    lvl65:
+      - "You have unlocked the Haste command perk!"
+    lvl75:
+      - "You have unlocked the Miner III tag perk!"
