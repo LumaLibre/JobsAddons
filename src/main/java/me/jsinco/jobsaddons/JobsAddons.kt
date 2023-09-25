@@ -15,7 +15,7 @@ class JobsAddons : JavaPlugin() {
         server.pluginManager.registerEvents(Listeners(this), this)
         MiscPerkCommands(this) // Register commands
         PotionCommands(this) // Register commands
-        getCommand("jobperks")!!.setExecutor(JobsPerksCommand())
+        getCommand("jobperks")!!.setExecutor(JobsPerksCommand(this))
     }
 
     override fun onDisable() {

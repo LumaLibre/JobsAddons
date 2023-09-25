@@ -3,11 +3,11 @@ package me.jsinco.jobsaddons.util
 import com.sk89q.worldedit.bukkit.BukkitAdapter
 import com.sk89q.worldguard.WorldGuard
 import me.jsinco.jobsaddons.JobsAddons
+import org.bukkit.Bukkit
 import org.bukkit.entity.Player
 
 object AntiPayRegions {
-    private val plugin = JobsAddons.getPlugin(JobsAddons::class.java)
-    fun shouldPay(player: Player): Boolean {
+    fun shouldPay(player: Player, plugin: JobsAddons): Boolean {
         val wgLocation = BukkitAdapter.adapt(player.location)
         val container = WorldGuard.getInstance().getPlatform().regionContainer
         val query = container.createQuery()

@@ -21,20 +21,23 @@ class Listeners(private val plugin: JobsAddons) : Listener {
 
     @EventHandler
     fun onJobsPrePayout(event: JobsPrePaymentEvent) {
-        if (!AntiPayRegions.shouldPay(event.player.player)) {
+        if (event.player.player == null) return
+        if (!AntiPayRegions.shouldPay(event.player.player!!, plugin)) {
             event.isCancelled = true
         }
     }
 
     @EventHandler
     fun onJobsExpPayout(event: JobsExpGainEvent) {
-        if (!AntiPayRegions.shouldPay(event.player.player)) {
+        if (event.player.player == null) return
+        if (!AntiPayRegions.shouldPay(event.player.player!!, plugin)) {
             event.isCancelled = true
         }
     }
 
     @EventHandler
     fun onPlayerJoin(event: PlayerJoinEvent) {
+        if (event.player.isOp) return
         val converter = LegacyConverter(plugin)
         converter.convertPlayerPermissions(event.player)
         val modified = converter.getPermissionsModified()

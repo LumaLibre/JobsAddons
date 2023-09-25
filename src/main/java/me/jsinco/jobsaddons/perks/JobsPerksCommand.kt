@@ -10,9 +10,11 @@ import org.bukkit.command.CommandSender
 import org.bukkit.command.TabCompleter
 import org.bukkit.entity.Player
 
-class JobsPerksCommand : CommandExecutor, TabCompleter {
+class JobsPerksCommand (
+    private val plugin: JobsAddons
+) : CommandExecutor, TabCompleter {
 
-    private val plugin = JobsAddons.getPlugin(JobsAddons::class.java)
+
 
 
     override fun onCommand(sender: CommandSender, command: Command, label: String, args: Array<String>): Boolean {
