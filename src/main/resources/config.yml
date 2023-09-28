@@ -3,3 +3,46 @@ prefix: '&#f7903b&lI&#f7a93b&ln&#f8c23a&lf&#f8db3a&lo &r&8»&#E2E2E2 '
 # Specific world guard regions to block jobs from paying from
 block-pay:
   - "jobsantipay"
+
+# Integers only
+PlayerPoints-integration:
+  Alchemist:
+    amount-to-give: 2
+    bound: 32000
+    weight: 30
+  Blacksmith:
+    amount-to-give: 1
+    bound: 32000
+    weight: 30
+  Builder:
+    amount-to-give: 1
+    bound: 32000
+    weight: 14
+  Cooker: # (Cook)
+    amount-to-give: 1
+    bound: 32000
+    weight: 30
+  Digger:
+    amount-to-give: 1
+    bound: 32000
+    weight: 13
+  Farmer:
+    amount-to-give: 1
+    bound: 32000
+    weight: 10
+  Fisherman:
+    amount-to-give: 1
+    bound: 32000
+    weight: 30
+  Hunter:
+    amount-to-give: 1
+    bound: 32000
+    weight: 17
+  Lumberjack:
+    amount-to-give: 1
+    bound: 32000
+    weight: 14
+  Miner:
+    amount-to-give: 1
+    bound: 32000
+    weight: 12
