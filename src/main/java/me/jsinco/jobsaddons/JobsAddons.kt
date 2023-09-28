@@ -4,6 +4,9 @@ import me.jsinco.jobsaddons.events.Listeners
 import me.jsinco.jobsaddons.perks.JobsPerksCommand
 import me.jsinco.jobsaddons.perks.MiscPerkCommands
 import me.jsinco.jobsaddons.perks.PotionCommands
+import me.jsinco.jobsaddons.util.ColorUtils
+import org.bukkit.command.Command
+import org.bukkit.command.CommandSender
 import org.bukkit.plugin.java.JavaPlugin
 
 class JobsAddons : JavaPlugin() {
@@ -15,10 +18,13 @@ class JobsAddons : JavaPlugin() {
         server.pluginManager.registerEvents(Listeners(this), this)
         MiscPerkCommands(this) // Register commands
         PotionCommands(this) // Register commands
-        getCommand("jobperks")!!.setExecutor(JobsPerksCommand())
+        getCommand("jobperks")!!.setExecutor(JobsPerksCommand(this))
+        getCommand("jobsaddonsreload")!!.setExecutor(this)
     }
 
-    override fun onDisable() {
-        // Plugin shutdown logic
+    override fun onCommand(sender: CommandSender, command: Command, label: String, args: Array<String>): Boolean {
+        reloadConfig()
+        sender.sendMessage(ColorUtils.colorcode("${config.getString("prefix")} Reloaded config"))
+        return true
     }
 }
