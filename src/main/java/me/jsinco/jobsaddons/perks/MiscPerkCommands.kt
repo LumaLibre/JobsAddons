@@ -1,182 +1,185 @@
-package me.jsinco.jobsaddons.perks;
+package me.jsinco.jobsaddons.perks
 
-import me.jsinco.jobsaddons.util.ColorUtils;
-import me.jsinco.jobsaddons.JobsAddons;
-import org.bukkit.Bukkit;
-import org.bukkit.Material;
-import org.bukkit.block.Block;
-import org.bukkit.command.Command;
-import org.bukkit.command.CommandExecutor;
-import org.bukkit.command.CommandSender;
-import org.bukkit.entity.Player;
-import org.bukkit.event.block.BlockPlaceEvent;
-import org.bukkit.inventory.EquipmentSlot;
-import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.PlayerInventory;
+import me.jsinco.jobsaddons.JobsAddons
+import me.jsinco.jobsaddons.util.ColorUtils.colorcode
+import org.bukkit.Bukkit
+import org.bukkit.Material
+import org.bukkit.command.Command
+import org.bukkit.command.CommandExecutor
+import org.bukkit.command.CommandSender
+import org.bukkit.entity.Player
+import org.bukkit.event.block.BlockPlaceEvent
+import org.bukkit.inventory.EquipmentSlot
+import org.bukkit.inventory.ItemStack
+import java.util.*
 
-import java.util.Map;
-
-public class MiscPerkCommands implements CommandExecutor {
-
-
-    private final JobsAddons plugin;
-
-    public MiscPerkCommands(JobsAddons plugin) {
-        this.plugin = plugin;
-        plugin.getCommand("bottle").setExecutor(this);
-        plugin.getCommand("blaze").setExecutor(this);
-        plugin.getCommand("concrete").setExecutor(this);
-        plugin.getCommand("powder").setExecutor(this);
-        plugin.getCommand("stripcolor").setExecutor(this);
-        plugin.getCommand("grass").setExecutor(this);
-        plugin.getCommand("dirt").setExecutor(this);
-        plugin.getCommand("placehere").setExecutor(this);
-        plugin.getCommand("strip").setExecutor(this);
+class MiscPerkCommands(private val plugin: JobsAddons) : CommandExecutor {
+    init {
+        plugin.getCommand("bottle")!!.setExecutor(this)
+        plugin.getCommand("blaze")!!.setExecutor(this)
+        plugin.getCommand("concrete")!!.setExecutor(this)
+        plugin.getCommand("powder")!!.setExecutor(this)
+        plugin.getCommand("stripcolor")!!.setExecutor(this)
+        plugin.getCommand("grass")!!.setExecutor(this)
+        plugin.getCommand("dirt")!!.setExecutor(this)
+        plugin.getCommand("placehere")!!.setExecutor(this)
+        plugin.getCommand("strip")!!.setExecutor(this)
     }
 
-    @Override
-    public boolean onCommand(CommandSender commandSender, Command command, String s, String[] strings) {
-        if (!(commandSender instanceof Player player)) return true;
-        switch (command.getName().toLowerCase()) {
-            case "bottle" -> convertItemFromInventory(player, Material.GLASS, Material.GLASS_BOTTLE, 3, 3);
-            case "blaze" -> convertItemFromInventory(player, Material.BLAZE_ROD, Material.BLAZE_POWDER, 1, 2);
-            case "grass" -> convertItemFromInventory(player, Material.DIRT, Material.GRASS_BLOCK, 1, 1);
-            case "dirt" -> convertItemFromInventory(player, Material.GRASS_BLOCK, Material.DIRT, 1, 1);
-            case "concrete" -> replaceInventoryItemFromString(player, "CONCRETE_POWDER", "CONCRETE");
-            case "powder" -> replaceInventoryItemFromString(player, "CONCRETE", "CONCRETE_POWDER");
-            // Methods I have not edited yet
-            case "stripcolor" -> player.sendMessage(stripcolor(player));
-            case "placehere" -> player.sendMessage(placehere(player));
-            case "strip" -> player.sendMessage(strip(player));
+    override fun onCommand(commandSender: CommandSender, command: Command, s: String, strings: Array<String>): Boolean {
+        if (commandSender !is Player) return true
+        when (command.name.lowercase()) {
+            "bottle" -> convertItemFromInventory(commandSender, Material.GLASS, Material.GLASS_BOTTLE, 3, 3)
+            "blaze" -> convertItemFromInventory(commandSender, Material.BLAZE_ROD, Material.BLAZE_POWDER, 1, 2)
+            "grass" -> convertItemFromInventory(commandSender, Material.DIRT, Material.GRASS_BLOCK, 1, 1)
+            "dirt" -> convertItemFromInventory(commandSender, Material.GRASS_BLOCK, Material.DIRT, 1, 1)
+            "concrete" -> replaceInventoryItemFromString(commandSender, "CONCRETE_POWDER", "CONCRETE")
+            "powder" -> replaceInventoryItemFromString(commandSender, "CONCRETE", "CONCRETE_POWDER")
+            "stripcolor" -> stripColor(commandSender)
+            "placehere" -> placeHere(commandSender)
+            // Have not been edited
+            "strip" -> commandSender.sendMessage(strip(commandSender))
         }
-        return true;
+        return true
     }
 
-    private String stripcolor(Player player) {
-        ItemStack item = player.getInventory().getItemInMainHand();
-        String m = item.getType().toString();
+    private fun stripColor(player: Player) {
+        val blacklist = arrayListOf("MOSS_CARPET")
+        val whiteItems = arrayListOf("_WOOL", "_CONCRETE", "_CONCRETE_POWDER", "_GLAZED_TERRACOTTA", "_GLAZED_TERRACOTTA", "_BED", "_BANNER", "_CARPET")
+        val blankItems = mapOf(Pair("_STAINED_GLASS_PANE", "GLASS_PANE"), Pair("_STAINED_GLASS", "GLAss"), Pair("_SHULKER_BOX", "SHULKER_BOX"), Pair("_CANDLE", "CANDLE"))
 
-        if (m.endsWith("_WOOL")) item.setType(Material.WHITE_WOOL);
-        else if (m.endsWith("_CONCRETE")) item.setType(Material.WHITE_CONCRETE);
-        else if (m.endsWith("_CONCRETE_POWDER")) item.setType(Material.WHITE_CONCRETE_POWDER);
-        else if (m.endsWith("_GLAZED_TERRACOTTA")) item.setType(Material.WHITE_GLAZED_TERRACOTTA);
-        else if (m.endsWith("_TERRACOTTA")) item.setType(Material.TERRACOTTA);
-        else if (m.endsWith("_STAINED_GLASS_PANE")) item.setType(Material.GLASS_PANE);
-        else if (m.endsWith("_STAINED_GLASS") || m.equals("TINTED_GLASS")) item.setType(Material.GLASS);
-        else if (m.endsWith("_SHULKER_BOX")) item.setType(Material.SHULKER_BOX);
-        else if (m.endsWith("_BED")) item.setType(Material.WHITE_BED);
-        else if (m.endsWith("_CANDLE")) item.setType(Material.CANDLE);
-        else if (m.endsWith("_BANNER")) item.setType(Material.WHITE_BANNER);
-        else if (m.endsWith("_CARPET") && !m.equals("MOSS_CARPET")) item.setType(Material.WHITE_CARPET);
-
-        return ColorUtils.colorcode(plugin.getConfig().getString("prefix") + "Stripped color from item in hand");
-    }
-
-    private String placehere(Player player) {
-        try {
-            if (player.getInventory().getItemInMainHand().getType().equals(Material.AIR) || noPlace(player)) {
-                throw new IllegalArgumentException();
+        val item = player.inventory.itemInMainHand
+        if (!blacklist.contains(item.type.toString())) {
+            for (whiteItem in whiteItems) {
+                if (!item.type.toString().endsWith(whiteItem)) continue
+                item.setType(Material.valueOf("WHITE$whiteItem"))
             }
-            Block block = player.getLocation().getBlock();
-            if (!block.getType().isAir()) {
-                return ColorUtils.colorcode(plugin.getConfig().getString("prefix") + "There is already a block here!");
+            for (blankItem in blankItems) {
+                if (!item.type.toString().endsWith(blankItem.key)) continue
+                item.setType(Material.valueOf(blankItem.value))
             }
-            block.setType(player.getInventory().getItemInMainHand().getType());
-            String m = block.getType().toString();
-            player.getInventory().getItemInMainHand().setAmount(player.getInventory().getItemInMainHand().getAmount() - 1);
-            return ColorUtils.colorcode(plugin.getConfig().getString("prefix") + "Set block at location to " + m.toLowerCase().replace("_", " "));
-        } catch (IllegalArgumentException e) {
-            return ColorUtils.colorcode(plugin.getConfig().getString("prefix") + "You cannot place that block here!");
         }
+
+        player.sendMessage(colorcode("${plugin.getConfig().getString("prefix")} Stripped color from item in hand"))
     }
 
-    private String strip(Player player) {
-        for (ItemStack item : player.getInventory().getContents()) {
-            if (item == null || item.getType().toString().contains("STRIPPED_")) continue;
-            String logType = null;
-            if (item.getType().toString().endsWith("_LOG")) logType = item.getType().toString();
-            else if (item.getType().toString().endsWith("_WOOD")) logType = item.getType().toString();
-            else if (item.getType().toString().endsWith("_STEM")) logType = item.getType().toString();
-            else if (item.getType().toString().endsWith("_HYPHAE")) logType = item.getType().toString();
+    private fun placeHere(player: Player) {
+        if (player.inventory.itemInMainHand.type == Material.AIR || noPlace(player)) {
+            player.sendMessage(colorcode(plugin.getConfig().getString("prefix") + "You cannot place that block here!"))
+            return
+        }
+        val block = player.location.block
+        if (!block.type.isAir) {
+            player.sendMessage(colorcode(plugin.getConfig().getString("prefix") + "There is already a block here!"))
+            return
+        }
+        block.type = player.inventory.itemInMainHand.type
+        val m = block.type.toString()
+        player.inventory.itemInMainHand.amount -= 1
 
+        player.sendMessage(colorcode("${plugin.getConfig().getString("prefix")} Set block at location to ${m.lowercase().replace("_", " ")}"))
+    }
+
+    private fun strip(player: Player): String {
+        for (item in player.inventory.contents) {
+            if (item == null || item.type.toString().contains("STRIPPED_")) continue
+            var logType: String? = null
+            if (item.type.toString().endsWith("_LOG")) logType = item.type.toString() else if (item.type.toString()
+                    .endsWith("_WOOD")
+            ) logType = item.type.toString() else if (item.type.toString().endsWith("_STEM")) logType =
+                item.type.toString() else if (item.type.toString().endsWith("_HYPHAE")) logType = item.type.toString()
             if (logType != null) {
-                item.setType(Material.valueOf("STRIPPED_" + logType));
+                item.setType(Material.valueOf("STRIPPED_$logType"))
             }
         }
-        return ColorUtils.colorcode(plugin.getConfig().getString("prefix") + "Stripped all logs and wood in your inventory");
+        return colorcode(plugin.getConfig().getString("prefix") + "Stripped all logs and wood in your inventory")
     }
 
-    public boolean noPlace(Player player) {
-        BlockPlaceEvent event = new BlockPlaceEvent(player.getLocation().getBlock(), player.getLocation().getBlock().getState(), player.getLocation().getBlock(), player.getInventory().getItemInMainHand(), player, true, EquipmentSlot.HAND);
-        Bukkit.getPluginManager().callEvent(event);
-        return event.isCancelled();
-    }
 
 
     // FIXME
-    public void convertItemFromInventory(Player player, Material from, Material to, int craftAmount, int craftReturnAmount) {
-        if (player.getInventory().getItemInOffHand().getType().equals(from)) {
-            player.sendMessage(ColorUtils.colorcode(plugin.getConfig().getString("prefix") + "You cannot convert your offhand or helmet into this"));
-            return;
-        } else if (player.getInventory().getHelmet() != null && player.getInventory().getHelmet().getType().equals(from)) {
-            player.sendMessage(ColorUtils.colorcode(plugin.getConfig().getString("prefix") + "You cannot convert your offhand or helmet into this"));
-            return;
+    private fun convertItemFromInventory(
+        player: Player,
+        from: Material,
+        to: Material,
+        craftAmount: Int,
+        craftReturnAmount: Int
+    ) {
+        if (player.inventory.itemInOffHand.type == from || (player.inventory.helmet != null && player.inventory.helmet!!.type == from)) {
+            player.sendMessage(
+                colorcode(
+                    plugin.getConfig().getString("prefix") + "You cannot convert your offhand or helmet into this"
+                )
+            )
+            return
         }
-
-        PlayerInventory inv = player.getInventory();
-
-
-        int amount = 0;
-        for (ItemStack item : inv.getContents()) {
-            if (item != null && item.getType() == from) {
-                amount += item.getAmount();
+        val inv = player.inventory
+        var amount = 0
+        for (item in inv.contents) {
+            if (item != null && item.type == from) {
+                amount += item.amount
             }
         }
-        amount /= craftAmount;
-
-        String replace = from.toString().toLowerCase().replace("_", " ");
+        amount /= craftAmount
+        val replace = from.toString().lowercase(Locale.getDefault()).replace("_", " ")
         if (amount < craftAmount) {
-            player.sendMessage(ColorUtils.colorcode(plugin.getConfig().getString("prefix") + "You do not have any " + replace + "'s to convert"));
-            return;
+            player.sendMessage(
+                colorcode(
+                    plugin.getConfig().getString("prefix") + "You do not have any " + replace + "'s to convert"
+                )
+            )
+            return
         }
-
-        inv.removeItem(new ItemStack(from, amount * craftAmount));
-
-
-        boolean dropped = false;
-        final Map<Integer, ItemStack> map = inv.addItem(new ItemStack(to, amount * craftReturnAmount));
-        for (final ItemStack item : map.values()) {
-            player.getWorld().dropItemNaturally(player.getLocation(), item);
-            dropped = true;
+        inv.removeItem(ItemStack(from, amount * craftAmount))
+        var dropped = false
+        val map: Map<Int, ItemStack> = inv.addItem(ItemStack(to, amount * craftReturnAmount))
+        for (item in map.values) {
+            player.world.dropItemNaturally(player.location, item)
+            dropped = true
         }
         if (dropped) {
-            player.sendMessage(ColorUtils.colorcode(plugin.getConfig().getString("prefix") + "Please note, some items were dropped on the ground due to a full inv. They are on the ground, but may not render"));
+            player.sendMessage(
+                colorcode(
+                    plugin.getConfig()
+                        .getString("prefix") + "Please note, some items were dropped on the ground due to a full inv. They are on the ground, but may not render"
+                )
+            )
         } else {
-            player.sendMessage(ColorUtils.colorcode(plugin.getConfig().getString("prefix") + "You have converted " + amount + " " + replace + " into " + (amount * craftReturnAmount) + " " + to.toString().toLowerCase().replace("_", " ")));
+            player.sendMessage(colorcode(plugin.getConfig().getString("prefix") + "You have converted " + amount + " " + replace + " into " + amount * craftReturnAmount + " " + to.toString().lowercase().replace("_", " ")))
         }
     }
 
-
-    public void replaceInventoryItemFromString(Player player, String stringType, String replaceStringType) {
-        if (player.getInventory().getItemInOffHand().getType().toString().contains(stringType)) {
-            player.sendMessage(ColorUtils.colorcode(plugin.getConfig().getString("prefix") + "You cannot convert your offhand or helmet into" + stringType));
-            return;
-        } else if (player.getInventory().getHelmet() != null && player.getInventory().getHelmet().getType().toString().contains(stringType)) {
-            player.sendMessage(ColorUtils.colorcode(plugin.getConfig().getString("prefix") + "You cannot convert your offhand or helmet into" + stringType));
-            return;
+    private fun replaceInventoryItemFromString(player: Player, stringType: String, replaceStringType: String) {
+        if (player.inventory.itemInOffHand.type.toString().contains(stringType) || (player.inventory.helmet != null && player.inventory.helmet!!.type.toString().contains(stringType))) {
+            player.sendMessage(colorcode(plugin.getConfig().getString("prefix") + "You cannot convert your offhand or helmet into" + stringType))
+            return
         }
-
-        PlayerInventory inv = player.getInventory();
-        for (ItemStack item : inv.getContents()) {
-            if (item != null && item.getType().toString().contains(stringType)) {
-                if (item.hasItemMeta()) continue; // Don't convert custom items
-
-                String newMaterial = item.getType().toString().replace(stringType, replaceStringType).strip();
-                int amount = item.getAmount();
-                inv.removeItem(new ItemStack(item.getType(), amount));
-                inv.addItem(new ItemStack(Material.valueOf(newMaterial), amount));
+        val inv = player.inventory
+        for (item in inv.contents) {
+            if (item != null && item.type.toString().contains(stringType)) {
+                if (item.hasItemMeta()) continue  // Don't convert custom items
+                val newMaterial = item.type.toString().replace(stringType, replaceStringType).trim()
+                val amount = item.amount
+                inv.removeItem(ItemStack(item.type, amount))
+                inv.addItem(ItemStack(Material.valueOf(newMaterial), amount))
             }
         }
-        player.sendMessage(ColorUtils.colorcode(plugin.getConfig().getString("prefix") + "You have converted all " + stringType + " in your inventory to " + replaceStringType));
+        player.sendMessage(colorcode(plugin.getConfig().getString("prefix") + "You have converted all " + stringType + " in your inventory to " + replaceStringType))
+    }
+
+    companion object {
+        fun noPlace(player: Player): Boolean {
+            val event = BlockPlaceEvent(
+                player.location.block,
+                player.location.block.state,
+                player.location.block,
+                player.inventory.itemInMainHand,
+                player,
+                true,
+                EquipmentSlot.HAND
+            )
+            Bukkit.getPluginManager().callEvent(event)
+            return event.isCancelled
+        }
     }
 }
