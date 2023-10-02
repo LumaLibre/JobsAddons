@@ -11,7 +11,7 @@ class LegacyConverter(private val plugin: JobsAddons) {
         "absorption", "fireresistance", "nightvision", "strength", "haste",
         "luck", "speed", "regeneration", "jumpboost", "dolphinsgrace",
         "triad", "bottle", "blaze", "concrete", "powder", "stripcolor",
-        "grass", "dirt", "placehere", "strip"
+        "grass", "dirt", "placehere", "strip", "healall"
     )
 
 

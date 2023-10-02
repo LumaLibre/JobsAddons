@@ -57,6 +57,8 @@ commands:
     aliases: [place, here]
   strip:
     permission: jobsaddons.strip
+  healall:
+    permission: jobsaddons.healall
   jobsperks:
     description: Job Perks Command
     aliases: [jobperks, jperks, perks]

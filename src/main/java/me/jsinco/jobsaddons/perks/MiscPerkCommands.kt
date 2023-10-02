@@ -11,6 +11,7 @@ import org.bukkit.entity.Player
 import org.bukkit.event.block.BlockPlaceEvent
 import org.bukkit.inventory.EquipmentSlot
 import org.bukkit.inventory.ItemStack
+import org.bukkit.metadata.FixedMetadataValue
 import java.util.*
 
 class MiscPerkCommands(private val plugin: JobsAddons) : CommandExecutor {
@@ -24,6 +25,7 @@ class MiscPerkCommands(private val plugin: JobsAddons) : CommandExecutor {
         plugin.getCommand("dirt")!!.setExecutor(this)
         plugin.getCommand("placehere")!!.setExecutor(this)
         plugin.getCommand("strip")!!.setExecutor(this)
+        plugin.getCommand("healall")!!.setExecutor(this)
     }
 
     override fun onCommand(commandSender: CommandSender, command: Command, s: String, strings: Array<String>): Boolean {
@@ -37,6 +39,7 @@ class MiscPerkCommands(private val plugin: JobsAddons) : CommandExecutor {
             "powder" -> replaceInventoryItemFromString(commandSender, "CONCRETE", "CONCRETE_POWDER")
             "stripcolor" -> stripColor(commandSender)
             "placehere" -> placeHere(commandSender)
+            "healall" -> healAll(commandSender)
             // Have not been edited
             "strip" -> commandSender.sendMessage(strip(commandSender))
         }
@@ -165,6 +168,30 @@ class MiscPerkCommands(private val plugin: JobsAddons) : CommandExecutor {
             }
         }
         player.sendMessage(colorcode(plugin.getConfig().getString("prefix") + "You have converted all " + stringType + " in your inventory to " + replaceStringType))
+    }
+
+    private fun healAll(player: Player) {
+        if (player.hasMetadata("healCooldown")) {
+            val cooldown = player.getMetadata("healCooldown")[0].asLong()
+            if (System.currentTimeMillis() < cooldown) {
+                player.sendMessage(colorcode(plugin.config.getString("prefix") + "You cannot use this command for another ${(cooldown - System.currentTimeMillis()) / 60000} mins!"))
+                return
+            }
+        }
+
+        player.setMetadata("healCooldown", FixedMetadataValue(plugin, System.currentTimeMillis() + 1800000))
+        Bukkit.broadcastMessage(colorcode(plugin.config.getString("prefix") + "${player.name} has healed everyone! \uE071"))
+        for (otherPlayer in Bukkit.getOnlinePlayers()) {
+            otherPlayer.health = 20.0
+            otherPlayer.foodLevel = 20
+            otherPlayer.saturation = 20.0f
+            otherPlayer.sendMessage(colorcode(plugin.config.getString("prefix") + "You have been healed by ${player.name}"))
+        }
+
+        Bukkit.getScheduler().scheduleSyncDelayedTask(plugin, {
+            if (!player.isOnline || player == null) return@scheduleSyncDelayedTask
+            player.removeMetadata("healCooldown", plugin)
+        }, 36000L)
     }
 
     companion object {
