@@ -76,10 +76,14 @@ class MiscPerkCommands(private val plugin: JobsAddons) : CommandExecutor {
             player.sendMessage(colorcode(plugin.getConfig().getString("prefix") + "There is already a block here!"))
             return
         }
-        block.type = player.inventory.itemInMainHand.type
-        val m = block.type.toString()
+        try {
+            block.type = player.inventory.itemInMainHand.type
+        } catch (exception: IllegalArgumentException) {
+            player.sendMessage(colorcode(plugin.getConfig().getString("prefix") + "You cannot place that block here!"))
+            return
+        }
         player.inventory.itemInMainHand.amount -= 1
-
+        val m = block.type.toString()
         player.sendMessage(colorcode("${plugin.getConfig().getString("prefix")} Set block at location to ${m.lowercase().replace("_", " ")}"))
     }
 
