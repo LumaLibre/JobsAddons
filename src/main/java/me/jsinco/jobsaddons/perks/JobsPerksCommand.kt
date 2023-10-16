@@ -4,6 +4,7 @@ import com.gamingmesh.jobs.Jobs
 import com.gamingmesh.jobs.container.Job
 import com.gamingmesh.jobs.container.JobsPlayer
 import me.jsinco.jobsaddons.JobsAddons
+import me.jsinco.jobsaddons.util.ColorUtils
 import org.bukkit.command.Command
 import org.bukkit.command.CommandExecutor
 import org.bukkit.command.CommandSender
@@ -21,9 +22,15 @@ class JobsPerksCommand (
         if (sender !is Player || args.isEmpty()) return true
 
         val jobsPlayer: JobsPlayer = Jobs.getPlayerManager().getJobsPlayer(sender)
-        val job : Job = Jobs.getJob(args[0].replace("Cook", "Cooker")) // Stupid as shit
+        val job : Job = Jobs.getJob(args[0].replace("Cook", "Cooker")) ?: return true // Stupid as shit
+        if (!jobsPlayer.isInJob(job)) {
+            sender.sendMessage(ColorUtils.colorcode("${plugin.getConfig().getString("prefix")}You must be in this job"))
+            return true
+        }
         val dP = DeliverPerks(plugin, jobsPlayer, job)
-        dP.claimAllJobPerksUntil(jobsPlayer.getJobProgression(job).level)
+        if (!dP.claimAllJobPerksUntil(jobsPlayer.getJobProgression(job).level)) {
+            sender.sendMessage(ColorUtils.colorcode("${plugin.getConfig().getString("prefix")}You have no perks to claim"))
+        }
 
 
         return true
