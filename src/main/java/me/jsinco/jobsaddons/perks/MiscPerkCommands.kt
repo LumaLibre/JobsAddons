@@ -164,6 +164,7 @@ class MiscPerkCommands(private val plugin: JobsAddons) : CommandExecutor {
         val inv = player.inventory
         for (item in inv.contents) {
             if (item != null && item.type.toString().contains(stringType)) {
+                if (stringType == "CONCRETE" && item.type.toString().contains("CONCRETE_POWDER")) continue
                 if (item.hasItemMeta()) continue  // Don't convert custom items
                 val newMaterial = item.type.toString().replace(stringType, replaceStringType).trim()
                 val amount = item.amount
@@ -171,7 +172,7 @@ class MiscPerkCommands(private val plugin: JobsAddons) : CommandExecutor {
                 inv.addItem(ItemStack(Material.valueOf(newMaterial), amount))
             }
         }
-        player.sendMessage(colorcode(plugin.getConfig().getString("prefix") + "You have converted all " + stringType + " in your inventory to " + replaceStringType))
+        player.sendMessage(colorcode(plugin.getConfig().getString("prefix") + "You have converted all " + stringType.lowercase() + " in your inventory to " + replaceStringType.lowercase()))
     }
 
     private fun healAll(player: Player) {
@@ -193,7 +194,7 @@ class MiscPerkCommands(private val plugin: JobsAddons) : CommandExecutor {
         }
 
         Bukkit.getScheduler().scheduleSyncDelayedTask(plugin, {
-            if (!player.isOnline || player == null) return@scheduleSyncDelayedTask
+            if (!player.isOnline) return@scheduleSyncDelayedTask
             player.removeMetadata("healCooldown", plugin)
         }, 36000L)
     }
