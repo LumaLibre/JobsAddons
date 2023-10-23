@@ -49,7 +49,7 @@ class MiscPerkCommands(private val plugin: JobsAddons) : CommandExecutor {
     private fun stripColor(player: Player) {
         val blacklist = arrayListOf("MOSS_CARPET")
         val whiteItems = arrayListOf("_WOOL", "_CONCRETE", "_CONCRETE_POWDER", "_GLAZED_TERRACOTTA", "_GLAZED_TERRACOTTA", "_BED", "_BANNER", "_CARPET")
-        val blankItems = mapOf(Pair("_STAINED_GLASS_PANE", "GLASS_PANE"), Pair("_STAINED_GLASS", "GLAss"), Pair("_SHULKER_BOX", "SHULKER_BOX"), Pair("_CANDLE", "CANDLE"))
+        val blankItems = mapOf(Pair("_STAINED_GLASS_PANE", "GLASS_PANE"), Pair("_STAINED_GLASS", "GLASS"), Pair("_SHULKER_BOX", "SHULKER_BOX"), Pair("_CANDLE", "CANDLE"))
 
         val item = player.inventory.itemInMainHand
         if (!blacklist.contains(item.type.toString())) {
