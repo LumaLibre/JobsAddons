@@ -17,6 +17,7 @@ Alchemist:
     lvl35:
       - "You have unlocked the Absorption command perk!"
     lvl45:
+      - "You have unlocked the Alchemist II tag perk!"
       - "You have unlocked the Bottle command perk!"
       - "You have unlocked the Blaze command perk!"
       - "You got 500 levels of Alchemy!"
@@ -75,7 +76,7 @@ Builder:
     lvl75:
       - "You have unlocked the Builder III tag perk!"
 
-Cooker:
+Cook:
   perks:
     lvl20:
       - 'lp user %player% permission set eternaltags.tag.cook true'

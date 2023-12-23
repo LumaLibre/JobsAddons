@@ -3,7 +3,6 @@ package me.jsinco.jobsaddons.util
 import com.sk89q.worldedit.bukkit.BukkitAdapter
 import com.sk89q.worldguard.WorldGuard
 import me.jsinco.jobsaddons.JobsAddons
-import org.bukkit.Bukkit
 import org.bukkit.entity.Player
 
 object AntiPayRegions {

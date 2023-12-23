@@ -22,7 +22,7 @@ class JobsPerksCommand (
         if (sender !is Player || args.isEmpty()) return true
 
         val jobsPlayer: JobsPlayer = Jobs.getPlayerManager().getJobsPlayer(sender)
-        val job : Job = Jobs.getJob(args[0].replace("Cook", "Cooker")) ?: return true // Stupid as shit
+        val job : Job = Jobs.getJob(args[0]) ?: return true
         if (!jobsPlayer.isInJob(job)) {
             sender.sendMessage(ColorUtils.colorcode("${plugin.getConfig().getString("prefix")}You must be in this job"))
             return true
@@ -41,7 +41,7 @@ class JobsPerksCommand (
 
         Jobs.getJobs().forEach{job: Job? ->
             if (job != null) {
-                jobNames.add(job.name.replace("Cooker", "Cook"))
+                jobNames.add(job.name)
             }
         }
 

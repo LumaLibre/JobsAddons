@@ -4,6 +4,7 @@ prefix: '&#f7903b&lI&#f7a93b&ln&#f8c23a&lf&#f8db3a&lo &r&8»&#E2E2E2 '
 block-pay:
   - "jobsantipay"
 
+PlayerPoints-integration-Enabled: false
 # Integers only
 PlayerPoints-integration:
   Alchemist:
@@ -18,7 +19,7 @@ PlayerPoints-integration:
     amount-to-give: 1
     bound: 32000
     weight: 14
-  Cooker: # (Cook)
+  Cook:
     amount-to-give: 1
     bound: 32000
     weight: 30

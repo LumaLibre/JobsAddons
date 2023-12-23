@@ -38,28 +38,10 @@ class Listeners(private val plugin: JobsAddons) : Listener {
             event.isCancelled = true
             return
         }
+        if (!plugin.config.getBoolean("PlayerPoints-integration-Enabled")) return
         val name = event.job.name
-        try {
-            if (Random().nextInt(plugin.config.getInt("PlayerPoints-integration.$name.bound")) <= plugin.config.getInt("PlayerPoints-integration.$name.weight")) {
-                PlayerPointsIntegration.givePoints(player, plugin.config.getInt("PlayerPoints-integration.$name.amount-to-give"))
-            }
-        } catch (e: Exception) {
-            plugin.logger.warning("Failed to give player points to ${player.name} for job $name")
-        }
-    }
-
-    @EventHandler
-    fun onPlayerJoin(event: PlayerJoinEvent) {
-        if (event.player.isOp) return
-        val converter = LegacyConverter(plugin)
-        converter.convertPlayerPermissions(event.player)
-        val modified = converter.getPermissionsModified()
-        if (modified == 0) return
-        plugin.logger.info("Converted $modified permissions for ${event.player.name}")
-        for (player in Bukkit.getOnlinePlayers()) {
-            if (player.isOp) {
-                player.sendMessage(ColorUtils.colorcode(plugin.config.getString("prefix") + "Converted ${modified/2} legacy permissions for ${event.player.name} (T: $modified)"))
-            }
+        if (Random().nextInt(plugin.config.getInt("PlayerPoints-integration.$name.bound")) <= plugin.config.getInt("PlayerPoints-integration.$name.weight")) {
+            PlayerPointsIntegration.givePoints(player, plugin.config.getInt("PlayerPoints-integration.$name.amount-to-give"))
         }
     }
 }
