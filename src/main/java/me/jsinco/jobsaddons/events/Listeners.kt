@@ -11,7 +11,7 @@ import me.jsinco.jobsaddons.util.AntiPayRegions
 import org.bukkit.entity.Player
 import org.bukkit.event.EventHandler
 import org.bukkit.event.Listener
-import java.util.*
+import java.util.Random
 
 class Listeners(private val plugin: JobsAddons) : Listener {
     @EventHandler
