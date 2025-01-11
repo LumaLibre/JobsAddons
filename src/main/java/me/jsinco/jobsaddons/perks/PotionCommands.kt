@@ -55,13 +55,13 @@ class PotionCommands(private val plugin: JobsAddons) : CommandExecutor {
             player.removePotionEffect(potionEffectType)
         } else {
             player.addScoreboardTag(tag)
-            player.addPotionEffect(PotionEffect(potionEffectType, 340, 0, false, false))
+            player.addPotionEffect(PotionEffect(potionEffectType, 600, 0, false, false))
         }
         player.playSound(player.location, Sound.ENTITY_GLOW_SQUID_AMBIENT, 1f, 1f)
     }
 
     private fun potEffect(player: Player, potionEffectType: PotionEffectType) {
-        player.addPotionEffect(PotionEffect(potionEffectType, 340, 0, false, false))
+        player.addPotionEffect(PotionEffect(potionEffectType, 600, 0, false, false))
     }
     // FIXME: CLEANUP t
     fun potionCMDRunnables() {
