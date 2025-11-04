@@ -1,5 +1,6 @@
 name: JobsAddons
 version: '${version}'
+author: 'Jsinco'
 main: me.jsinco.jobsaddons.JobsAddons
 api-version: '1.20'
 depend: [Jobs, WorldGuard]
