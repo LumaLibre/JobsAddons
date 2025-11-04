@@ -5,23 +5,22 @@ Alchemist:
     lvl35:
       - 'lp user %player% permission set jobsaddons.absorption true'
     lvl45:
-      - 'lp user %player% permission set eternaltags.tag.alchemist2 true'
       - 'lp user %player% permission set jobsaddons.bottle true'
       - 'lp user %player% permission set jobsaddons.blaze true'
       - 'mcmmo:addlevels %player% Alchemy 500'
-    lvl75:
-      - 'lp user %player% permission set jobsaddons.alchemist3 true'
+    lvl70:
+      - 'lp user %player% permission set eternaltags.tag.alchemist2 true'
   messages: # Messages sent to the player when they reach the level
     lvl20:
-      - "You have unlocked the Alchemist tag perk!"
+      - "You have unlocked the &#7b66fb&lElixirian&#E2E2E2 tag perk!"
     lvl35:
       - "You have unlocked the Absorption command perk!"
     lvl45:
-      - "You have unlocked the Bottle command perk!"
-      - "You have unlocked the Blaze command perk!"
-      - "You got 500 levels of Alchemy!"
-    lvl75:
-      - "You have unlocked the Alchemist III tag perk!"
+      - "You have unlocked the &#F7FFC9/bottle&#E2E2E2 command perk!"
+      - "You have unlocked the &#F7FFC9/blaze&#E2E2E2 command perk!"
+      - "You got 500 mcMMO levels of Alchemy!"
+    lvl70:
+      - "You have unlocked the  &#dd64fb&lB&#e16af3&lr&#e670eb&le&#ea76e3&lw&#ee7cdb&ls&#f282d2&lm&#f788ca&li&#fb8ec2&lt&#ff94ba&lh&#E2E2E2 tag perk!"
 
 Blacksmith:
   perks:
@@ -32,50 +31,48 @@ Blacksmith:
     lvl45:
       - 'lp user %player% permission set eternaltags.tag.blacksmith2 true'
       - 'lp user %player% permission set jobsaddons.triad true'
-    lvl75:
+    lvl70:
       - 'lp user %player% permission set eternaltags.tag.blacksmith3 true'
   messages:
     lvl20:
-      - "You have unlocked the Blacksmith tag perk!"
+      - "You have unlocked the &#5c77a9&lArtisan&#E2E2E2 tag perk!"
     lvl35:
-      - "You have unlocked the Fire Resistance command perk!"
+      - "You have unlocked the &#F7FFC9/fireresistance&#E2E2E2 command perk!"
     lvl45:
-      - "You have unlocked the Triad command perk!"
-      - "You have unlocked the Blacksmith II tag perk!"
-    lvl75:
-      - "You have unlocked the Blacksmith III tag perk!"
+      - "You have unlocked the &#F7FFC9/triad&#E2E2E2 command perk!"
+      - "You have unlocked the &#6d9dca&lW&#7aa4cd&le&#88abd0&ll&#95b2d3&ld&#a3b9d6&le&#b0c0d9&lr&#E2E2E2 tag perk!"
+    lvl70:
+      - "You have unlocked the &#f6e9fb&lI&#e8d9eb&lr&#dacadb&lo&#ccbaca&ln&#beaaba&ls&#af9aaa&lm&#a18b9a&li&#937b89&lt&#856b79&lh&#E2E2E2 tag perk!"
 
 Builder:
   perks:
     lvl20:
-      - 'lp user %player% permission set eternaltags.tag.builder1 true'
+      - 'lp user %player% permission set eternaltags.tag.builder true'
     lvl35:
       - 'lp user %player% permission set essentials.top true'
       - 'lp user %player% permission set essentials.bottom true'
     lvl45:
-      - 'lp user %player% permission set eternaltags.tag.builder2 true'
       - 'lp user %player% permission set jobsaddons.concrete true'
       - 'lp user %player% permission set jobsaddons.powder true'
     lvl55:
       - 'lp user %player% permission set jobsaddons.stripcolor true'
-    lvl75:
-      - 'lp user %player% permission set eternaltags.tag.builder3 true'
+    lvl70:
+      - 'lp user %player% permission set eternaltags.tag.builder2 true'
   messages:
     lvl20:
-      - "You have unlocked the Builder tag perk!"
+      - "You have unlocked the &#9cfe88&lCarpenter&#E2E2E2 tag perk!"
     lvl35:
-      - "You have unlocked the Top command perk!"
-      - "You have unlocked the Bottom command perk!"
+      - "You have unlocked the &#F7FFC9/top&#E2E2E2 command perk!"
+      - "You have unlocked the &#F7FFC9/bottom&#E2E2E2 command perk!"
     lvl45:
-      - "You have unlocked the Builder II tag perk!"
-      - "You have unlocked the Concrete command perk!"
-      - "You have unlocked the Powder command perk!"
+      - "You have unlocked the &#F7FFC9/concrete&#E2E2E2 command perk!"
+      - "You have unlocked the &#F7FFC9/powder&#E2E2E2 command perk!"
     lvl55:
-      - "You have unlocked the Strip Color command perk!"
-    lvl75:
-      - "You have unlocked the Builder III tag perk!"
+      - "You have unlocked the &#F7FFC9/stripcolor&#E2E2E2 command perk!"
+    lvl70:
+      - "You have unlocked the &#42ff6b&lA&#4dff74&lr&#57ff7d&lc&#62ff86&lh&#6cff8f&li&#77ff98&lt&#81ffa1&le&#8cffaa&lc&#96ffb3&lt&#E2E2E2 tag perk!"
 
-Cooker:
+Cook:
   perks:
     lvl20:
       - 'lp user %player% permission set eternaltags.tag.cook true'
@@ -84,22 +81,18 @@ Cooker:
     lvl45:
       - 'lp user %player% permission set essentials.heal true'
       - 'lp user %player% permission set eternaltags.tag.cook2 true'
-    lvl55:
-      - 'lp user %player% permission set solutilities.healall true'
-    lvl75:
+    lvl70:
       - 'lp user %player% permission set eternaltags.tag.cook3 true'
   messages:
     lvl20:
-      - "You have unlocked the Cook tag perk!"
+      - "You have unlocked the &#ff8e60&lBaker&#E2E2E2 tag perk!"
     lvl35:
-      - "You have unlocked the Feed command perk!"
+      - "You have unlocked the &#F7FFC9/feed&#E2E2E2 command perk!"
     lvl45:
-      - "You have unlocked the Heal command perk!"
-      - "You have unlocked the Cook II tag perk!"
-    lvl55:
-      - "You have unlocked the Heal All command perk!"
-    lvl75:
-      - "You have unlocked the Cook III tag perk!"
+      - "You have unlocked the &#F7FFC9/heal&#E2E2E2 command perk!"
+      - "You have unlocked the &#ffc56d&lC&#fcd885&lh&#f8ec9d&le&#f5ffb5&lf&#E2E2E2 tag perk!"
+    lvl70:
+      - "You have unlocked the &#ffa653&lC&#ffa15a&la&#ff9c62&lt&#ff9769&le&#ff9170&lr&#ff8c78&le&#ff877f&lr&#E2E2E2 tag perk!"
 
 Digger:
   perks:
@@ -109,23 +102,21 @@ Digger:
       - 'lp user %player% permission set jobsaddons.grass true'
       - 'lp user %player% permission set jobsaddons.dirt true'
     lvl45:
-      - 'lp user %player% permission set eternaltags.tag.digger2 true'
       - 'lp user %player% permission set jobsaddons.concrete true'
       - 'lp user %player% permission set jobsaddons.powder true'
-    lvl75:
-      - 'lp user %player% permission set eternaltags.tag.digger3 true'
+    lvl70:
+      - 'lp user %player% permission set eternaltags.tag.digger2 true'
   messages:
     lvl20:
-      - "You have unlocked the Digger tag perk!"
+      - "You have unlocked the &#ffe589&lGraveler&#E2E2E2 tag perk!"
     lvl35:
-      - "You have unlocked the Grass command perk!"
-      - "You have unlocked the Dirt command perk!"
+      - "You have unlocked the &#F7FFC9/grass&#E2E2E2 command perk!"
+      - "You have unlocked the &#F7FFC9/dirt&#E2E2E2 command perk!"
     lvl45:
-      - "You have unlocked the Digger II tag perk!"
-      - "You have unlocked the Concrete command perk!"
-      - "You have unlocked the Powder command perk!"
-    lvl75:
-      - "You have unlocked the Digger III tag perk!"
+      - "You have unlocked the &#F7FFC9/concrete&#E2E2E2 command perk!"
+      - "You have unlocked the &#F7FFC9/powder&#E2E2E2 command perk!"
+    lvl70:
+      - "You have unlocked the &#ffca8c&lE&#ffc28c&lx&#ffbb8c&lc&#ffb38c&la&#ffab8c&lv&#ffa38c&la&#ff9c8c&lt&#ff948c&lo&#ff8c8c&lr&#E2E2E2 tag perk!"
 
 Farmer:
   perks:
@@ -134,24 +125,22 @@ Farmer:
     lvl35:
       - 'lp user %player% permission set safarinet.craft.singleuse true'
     lvl45:
-      - 'lp user %player% permission set eternaltags.tag.farmer2 true'
       - 'mcmmo:addlevels %player% Herbalism 500'
-    lvl55:
-      - 'lp user %player% permission set jobsaddons.speed true'
-    lvl75:
-      - 'lp user %player% permission set eternaltags.tag.farmer3 true'
+      #lvl55:
+      #- 'lp user %player% permission set jobsaddons.speed true'
+    lvl70:
+      - 'lp user %player% permission set eternaltags.tag.farmer2 true'
   messages:
     lvl20:
-      - "You have unlocked the Farmer tag perk!"
+      - "You have unlocked the &#9fff63&lGardener&#E2E2E2 tag perk!"
     lvl35:
       - "You have unlocked the craft mob balls perk!"
     lvl45:
-      - "You have unlocked the Farmer II tag perk!"
-      - "You got 500 levels of Herbalism!"
-    lvl55:
-      - "You have unlocked the Speed command perk!"
-    lvl75:
-      - "You have unlocked the Farmer III tag perk!"
+      - "You got 500 mcMMO levels of Herbalism!"
+      #lvl55:
+      #- "You have unlocked the Speed command perk!"
+    lvl70:
+      - "You have unlocked the &#9aff98&lH&#a1ff8a&la&#a9ff7d&lr&#b0ff6f&lv&#b8ff62&le&#bfff54&ls&#c6ff46&lt&#ceff39&le&#d5ff2b&lr&#E2E2E2 tag perk!"
 
 Fisherman:
   perks:
@@ -162,18 +151,18 @@ Fisherman:
     lvl45:
       - 'lp user %player% permission set eternaltags.tag.fisherman2 true'
       - 'lp user %player% permission set jobsaddons.dolphinsgrace true'
-    lvl75:
+    lvl70:
       - 'lp user %player% permission set eternaltags.tag.fisherman3 true'
   messages:
     lvl20:
-      - "You have unlocked the Fisherman tag perk!"
+      - "You have unlocked the &#7acaff&lFisher&#E2E2E2 tag perk!"
     lvl35:
-      - "You have unlocked the Luck command perk!"
+      - "You have unlocked the &#F7FFC9/luck&#E2E2E2 command perk!"
     lvl45:
-      - "You have unlocked the Fisherman II tag perk!"
-      - "You have unlocked the Dolphin's Grace command perk!"
-    lvl75:
-      - "You have unlocked the Fisherman III tag perk!"
+      - "You have unlocked the &#7a97ff&lC&#83a4ff&la&#8db0ff&ls&#96bdff&lt&#a0c9ff&la&#a9d6ff&lw&#b3e2ff&la&#bcefff&ly&#E2E2E2 tag perk!"
+      - "You have unlocked the &#F7FFC9/dolphinsgrace&#E2E2E2 command perk!"
+    lvl70:
+      - "You have unlocked the &#44c7ff&lR&#4fd2eb&le&#5bddd6&le&#66e9c2&ll&#72f4ad&le&#7dff99&lr&#E2E2E2 tag perk!"
 
 Hunter:
   perks:
@@ -184,18 +173,18 @@ Hunter:
     lvl45:
       - 'lp user %player% permission set eternaltags.tag.hunter2 true'
       - 'lp user %player% permission set jobsaddons.speed true'
-    lvl75:
+    lvl70:
       - 'lp user %player% permission set eternaltags.tag.hunter3 true'
   messages:
     lvl20:
-      - "You have unlocked the Hunter tag perk!"
+      - "You have unlocked the &#f5605e&lSniper&#E2E2E2 tag perk!"
     lvl35:
-      - "You have unlocked the Strength command perk!"
+      - "You have unlocked the &#F7FFC9/strength&#E2E2E2 command perk!"
     lvl45:
-      - "You have unlocked the Hunter II tag perk!"
-      - "You have unlocked the Speed command perk!"
-    lvl75:
-      - "You have unlocked the Hunter III tag perk!"
+      - "You have unlocked the &#ff9356&lA&#ff854c&lr&#ff7743&lc&#ff6939&lh&#ff5b30&le&#ff4d26&lr&#E2E2E2 tag perk!"
+      - "You have unlocked the &#F7FFC9/speed&#E2E2E2 command perk!"
+    lvl70:
+      - "You have unlocked the &#ff3e14&lS&#ee391f&ll&#dd332a&la&#cb2e35&ly&#ba2840&le&#a9234b&lr&#E2E2E2 tag perk!"
 
 Lumberjack:
   perks:
@@ -210,22 +199,22 @@ Lumberjack:
       - 'lp user %player% permission set jobsaddons.haste true'
     lvl55:
       - 'lp user %player% permission set jobsaddons.strip true'
-    lvl75:
+    lvl70:
       - 'lp user %player% permission set eternaltags.tag.lumberjack3 true'
   messages:
     lvl20:
-      - "You have unlocked the Lumberjack tag perk!"
+      - "You have unlocked the &#bcf067&lLumberer&#E2E2E2 tag perk!"
     lvl30:
       - "You have unlocked the Tree Feller ability perk!"
     lvl35:
-      - "You have unlocked the Top command perk!"
+      - "You have unlocked the &#F7FFC9/top&#E2E2E2 command perk!"
     lvl45:
-      - "You have unlocked the Lumberjack II tag perk!"
-      - "You have unlocked the Haste command perk!"
+      - "You have unlocked the &#72f05d&lA&#74f066&lx&#75f06f&le&#77f078&lm&#79f081&la&#7af08a&ls&#7cf093&lt&#7df09c&le&#7ff0a5&lr&#E2E2E2 tag perk!"
+      - "You have unlocked the &#F7FFC9/haste&#E2E2E2 command perk!"
     lvl55:
-      - "You have unlocked the Strip command perk!"
-    lvl75:
-      - "You have unlocked the Lumberjack III tag perk!"
+      - "You have unlocked the &#F7FFC9/strip&#E2E2E2 command perk!"
+    lvl70:
+      - "You have unlocked the &#27ac6c&lA&#34b663&lr&#41bf5a&lb&#4ec951&lo&#5cd348&lr&#69dd3f&li&#76e636&ls&#83f02d&lt&#E2E2E2 tag perk!"
 
 Miner:
   perks:
@@ -233,24 +222,24 @@ Miner:
       - 'lp user %player% permission set eternaltags.tag.miner true'
     lvl35:
       - 'lp user %player% permission set essentials.top true'
-      - 'lp user %player% permission set essentials.bottom true'
+      #- 'lp user %player% permission set essentials.bottom true'
     lvl45:
       - 'lp user %player% permission set eternaltags.tag.miner2 true'
       - 'lp user %player% permission set jobsaddons.nightvision true'
     lvl65:
       - 'lp user %player% permission set jobsaddons.haste true'
-    lvl75:
+    lvl70:
       - 'lp user %player% permission set eternaltags.tag.miner3 true'
   messages:
     lvl20:
-      - "You have unlocked the Miner tag perk!"
+      - "You have unlocked the &#c343ff&lDredger&#E2E2E2 tag perk!"
     lvl35:
-      - "You have unlocked the Top command perk!"
-      - "You have unlocked the Bottom command perk!"
+      - "You have unlocked the &#F7FFC9/top&#E2E2E2 command perk!"
+      #- "You have unlocked the &#F7FFC9/bottom&#E2E2E2 command perk!"
     lvl45:
-      - "You have unlocked the Miner II tag perk!"
-      - "You have unlocked the Night Vision command perk!"
+      - "You have unlocked the &#9a35ff&lG&#a037ff&le&#a639ff&lm&#ac3bff&lo&#b23dff&ll&#b73fff&lo&#bd41ff&lg&#c343ff&li&#c945ff&ls&#cf47ff&lt&#E2E2E2 tag perk!"
+      - "You have unlocked the &#F7FFC9/nightvision&#E2E2E2 command perk!"
     lvl65:
-      - "You have unlocked the Haste command perk!"
-    lvl75:
-      - "You have unlocked the Miner III tag perk!"
+      - "You have unlocked the &#F7FFC9/haste&#E2E2E2 command perk!"
+    lvl70:
+      - "You have unlocked the &#ce50fb&lC&#d05dfb&la&#d16bfc&lv&#d378fc&le&#d586fc&lr&#d793fc&ln&#d8a1fd&le&#daaefd&lr&#E2E2E2 tag perk!"

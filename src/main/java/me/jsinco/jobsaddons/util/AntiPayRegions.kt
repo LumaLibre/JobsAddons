@@ -13,7 +13,7 @@ object AntiPayRegions {
         val query = container.createQuery()
         val set = query.getApplicableRegions(wgLocation)
         for (region in set) {
-            if (plugin.getConfig().getStringList("block-pay").contains(region.id)) {
+            if (plugin.config.getStringList("block-pay").contains(region.id)) {
                 return false
             }
         }

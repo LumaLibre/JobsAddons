@@ -1,7 +1,7 @@
 package me.jsinco.jobsaddons
 
 import me.jsinco.jobsaddons.events.Listeners
-import me.jsinco.jobsaddons.perks.JobsPerksCommand
+import me.jsinco.jobsaddons.commands.JobsPerksCommand
 import me.jsinco.jobsaddons.perks.MiscPerkCommands
 import me.jsinco.jobsaddons.perks.PotionCommands
 import me.jsinco.jobsaddons.util.ColorUtils
