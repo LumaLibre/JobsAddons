@@ -1,0 +1,10 @@
+name: JobsAddons
+main: net.lumamc.jobsaddons.JobsAddons
+version: '${version}'
+depend:
+  - LumaCore
+  - LuckPerms
+  - Jobs
+  - WorldGuard
+api-version: 1.21
+author: Jsinco
