@@ -51,6 +51,10 @@ class JobsAddons : JavaPlugin() {
         PerksCommandUtil.potionEffectRunnable()
     }
 
+    override fun onDisable() {
+        DataSource.INSTANCE.close()
+    }
+
     fun <T : OkaeriConfig> loadOkaeriFile(clazz: Class<T>, fileName: String): T {
         return ConfigManager.create(clazz) {
             it.withConfigurer(YamlBukkitConfigurer(), StandardSerdes())

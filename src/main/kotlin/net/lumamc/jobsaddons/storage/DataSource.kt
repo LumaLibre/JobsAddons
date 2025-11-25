@@ -41,4 +41,8 @@ abstract class DataSource {
         return "sql/$path".fromInternalResource()
     }
 
+    fun close() {
+        hikari.close()
+    }
+
 }
