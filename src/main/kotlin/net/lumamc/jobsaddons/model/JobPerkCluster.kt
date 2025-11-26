@@ -18,6 +18,7 @@ class JobPerkCluster() : OkaeriConfig() {
         val luckpermsAPI: LuckPerms? by lazy {
             Bukkit.getServicesManager().getRegistration(LuckPerms::class.java)?.provider
         }
+        val logger = JobsAddons.INSTANCE.logger
     }
 
     var jobName: String = ""
@@ -34,26 +35,39 @@ class JobPerkCluster() : OkaeriConfig() {
 
 
     fun claimPermissionPerks(player: Player): Int {
-        if (!player.checkJobLevel()) {
+        if (!checkJobLevel(player)) {
+            JobsAddons.debug("Player ${player.name} does not meet the job level requirement for job $jobName level $level")
             return 0
         }
 
         var claimed = 0
-        val api = CompanionHolder.luckpermsAPI ?: return 0
-        val luckPermsUser = api.userManager.getUser(player.uniqueId) ?: return 0
-
+        val api = CompanionHolder.luckpermsAPI ?: run {
+            CompanionHolder.logger.warning("LuckPerms API not found, cannot claim permission perks.")
+            return 0
+        }
+        val luckPermsUser = api.userManager.getUser(player.uniqueId) ?: run {
+            CompanionHolder.logger.warning("LuckPerms user not found for player ${player.name}, cannot claim permission perks.")
+            return 0
+        }
+        JobsAddons.debug("Claiming permission perks for player ${player.name} for job $jobName level $level:")
         for (container in permissions) {
             val perm = container.perk
             val msg = container.message
+
+
+            if (player.hasPermission(perm)) {
+                JobsAddons.debug("Player ${player.name} already has permission: $perm")
+                continue
+            }
+
             val node = Node.builder(perm).value(true).build()
-
-            if (luckPermsUser.data().toCollection().contains(node)) continue
-
             luckPermsUser.data().add(node)
             Text.msg(player, msg)
 
             claimed++
         }
+
+        JobsAddons.debug("Total permission perks claimed for player ${player.name}: $claimed")
 
         api.userManager.saveUser(luckPermsUser)
         return claimed
@@ -64,7 +78,7 @@ class JobPerkCluster() : OkaeriConfig() {
             consumer?.invoke(count)
         }
 
-        if (!player.checkJobLevel()) {
+        if (!checkJobLevel(player)) {
             runConsumer(0)
             return
         }
@@ -87,6 +101,8 @@ class JobPerkCluster() : OkaeriConfig() {
                     if (!player.hasPermission("jobsaddons.claimed${jobName}.$level")) {
                         Bukkit.dispatchCommand(Bukkit.getConsoleSender(), cmd.replace("{player}", player.name))
                         Text.msg(player, msg)
+                    } else {
+                        Text.msg(player, "$msg (Already claimed previously, rewriting.)")
                     }
                 }
 
@@ -104,12 +120,22 @@ class JobPerkCluster() : OkaeriConfig() {
 
     fun getJobLevel(player: Player): Int {
         val jobsPlayer: JobsPlayer = Jobs.getPlayerManager().getJobsPlayer(player)
-        val job = Jobs.getJob(jobName) ?: return 0
+        JobsAddons.debug("Fetching job level for player ${player.name} for job $jobName")
+        val job = Jobs.getJob(jobName) ?: run {
+            CompanionHolder.logger.warning("Job $jobName not found.")
+            return 0
+        }
         return jobsPlayer.getJobProgression(job).level
     }
 
-    fun Player.checkJobLevel(): Boolean {
-        return getJobLevel(this) >= level
+    fun checkJobLevel(player: Player): Boolean {
+        val playerJobLevel = getJobLevel(player)
+        JobsAddons.debug("Player ${player.name} has job level $playerJobLevel for job $jobName, required level is $level")
+        return playerJobLevel >= level
+    }
+
+    override fun toString(): String {
+        return "JobPerkCluster(jobName='$jobName', level=$level, permissions=$permissions, commands=$commands)"
     }
 
 
@@ -120,6 +146,10 @@ class JobPerkCluster() : OkaeriConfig() {
         constructor(perk: String, message: String) : this() {
             this.perk = perk
             this.message = message
+        }
+
+        override fun toString(): String {
+            return "PerkContainer(perk='$perk', message='$message')"
         }
     }
 

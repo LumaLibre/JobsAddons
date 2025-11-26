@@ -18,6 +18,8 @@ class PerksFile : OkaeriConfig() {
         return JobPerkCluster.Builder.create()
     }
 
+    var debug = true
+
     // this is tedious as fuck
     var perks: List<JobPerkCluster> = buildList {
 
@@ -294,7 +296,7 @@ class PerksFile : OkaeriConfig() {
             .level(70)
             .permissionPerk(
                 "eternaltags.tag.farmer2",
-                "You have unlocked the <b><#9aff98>H<#a1ff8a>a<#a9ff7d>r<#b0ff6f>v<#b8ff62>e<#bfff54>r<#c6ff46>t<#ceff39>e<#d5ff2b>r</b><white> tag perk!"
+                "You have unlocked the <b><#9aff98>H<#a1ff8a>a<#a9ff7d>r<#b0ff6f>v<#b8ff62>e<#bfff54>s<#c6ff46>t<#ceff39>e<#d5ff2b>r</b><white> tag perk!"
             )
             .build())
 

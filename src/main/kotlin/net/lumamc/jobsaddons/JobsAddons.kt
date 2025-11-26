@@ -28,6 +28,12 @@ class JobsAddons : JavaPlugin() {
 
         lateinit var PERKS: PerksFile
             private set
+
+        fun debug(message: String) {
+            if (PERKS.debug) {
+                INSTANCE.logger.info(message)
+            }
+        }
     }
 
     override fun onLoad() {
@@ -36,11 +42,12 @@ class JobsAddons : JavaPlugin() {
 
         val registry = WorldGuard.getInstance().flagRegistry
         try {
-            val flag = BooleanFlag("jobsaddons-block-pay")
-            registry.register(flag)
-            JOBSADDONS_BLOCK_PAY_FLAG = flag
+            JOBSADDONS_BLOCK_PAY_FLAG = BooleanFlag("jobsaddons-block-pay")
+            registry.register(JOBSADDONS_BLOCK_PAY_FLAG)
         } catch (e: FlagConflictException) {
             Logging.errorLog("Another plugin already took the jobsaddons-block-pay flag!", e)
+        } catch (e: IllegalStateException) {
+            Logging.errorLog("Failed to register jobsaddons-block-pay flag!")
         }
     }
 
@@ -52,6 +59,7 @@ class JobsAddons : JavaPlugin() {
     }
 
     override fun onDisable() {
+        moduleManager.unregisterModules()
         DataSource.INSTANCE.close()
     }
 

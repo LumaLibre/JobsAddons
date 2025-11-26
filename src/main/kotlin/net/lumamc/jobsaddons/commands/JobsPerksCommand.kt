@@ -44,8 +44,13 @@ class JobsPerksCommand : AbstractCommand() {
         val level = jobsPlayer.getJobProgression(job).level
 
         val clusters = JobsAddons.PERKS.clusters(job.name, level)
+        JobsAddons.debug("Player ${player.name} is claiming perks for job ${job.name} at level $level")
+        JobsAddons.debug("Found ${clusters.size} perk clusters to process")
+        JobsAddons.debug(clusters.toString())
         var claimed = 0
+        JobsAddons.debug("Starting")
         for (cluster in clusters) {
+            JobsAddons.debug("Processing cluster: $cluster")
             claimed += cluster.claimPermissionPerks(player)
             cluster.claimCommandPerks(player) {
                 claimed += it

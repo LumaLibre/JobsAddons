@@ -219,7 +219,8 @@ class LuckCommand : CommandPerk() {
 @CommandInfo(
     name = "speed",
     permission = "jobsaddons.speed",
-    playerOnly = true
+    playerOnly = true,
+    aliases = ["speed", "spd"]
 )
 class SpeedCommand : CommandPerk() {
     override fun doAction(sender: Player) {

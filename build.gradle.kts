@@ -58,6 +58,8 @@ tasks {
             modrinth("luckperms", "v5.5.17-bukkit")
             url("https://github.com/Zrips/CMILib/releases/download/1.5.7.0/CMILib1.5.7.0.jar")
             url("https://github.com/Zrips/Jobs/releases/download/v5.2.6.3/Jobs5.2.6.3.jar")
+            url("https://github.com/MilkBowl/Vault/releases/download/1.7.3/Vault.jar")
+            url("https://ci.ender.zone/job/EssentialsX/lastSuccessfulBuild/artifact/jars/EssentialsX-2.22.0-dev+44-87dfe37.jar")
         }
         minecraftVersion("1.21.10")
     }
