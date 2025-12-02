@@ -29,6 +29,10 @@ dependencies {
     implementation("eu.okaeri:okaeri-configs-serdes-bukkit:5.0.5")
     implementation("com.zaxxer:HikariCP:6.3.0")
     testImplementation(kotlin("test"))
+
+    compileOnly("dev.jsinco.luma.lumaitems:LumaItems:4c7b569")
+    compileOnly("de.Linus122.SafariNet:SafariNet:1.16.29-SNAPSHOT")
+    compileOnly("com.oheers.fish:even-more-fish:2.1.5-SNAPSHOT-1.21-RELEASE")
 }
 
 kotlin {

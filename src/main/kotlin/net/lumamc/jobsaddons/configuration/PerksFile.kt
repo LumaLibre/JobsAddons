@@ -20,6 +20,15 @@ class PerksFile : OkaeriConfig() {
 
     var debug = true
 
+    var autoSellFishRarities = listOf(
+        "Common",
+        "Uncommon",
+        "Rare",
+        "Junk",
+        "Quirky",
+        "Whimsical"
+    )
+
     // this is tedious as fuck
     var perks: List<JobPerkCluster> = buildList {
 

@@ -9,6 +9,8 @@ import dev.jsinco.luma.lumacore.manager.modules.AutoRegister
 import dev.jsinco.luma.lumacore.manager.modules.RegisterType
 import dev.jsinco.luma.lumacore.utility.Logging
 import net.lumamc.jobsaddons.JobsAddons
+import net.lumamc.jobsaddons.hooks.HookRegistry
+import net.lumamc.jobsaddons.hooks.external.WorldGuardHook
 import org.bukkit.entity.Player
 import org.bukkit.event.EventHandler
 import org.bukkit.event.Listener
@@ -46,12 +48,22 @@ class JobsListeners : Listener {
     }
 
     fun Player.shouldPay(): Boolean {
+        if (!HookRegistry.hasHook(WorldGuardHook::class.java)) {
+            return true
+        }
+
+        val wgHook: WorldGuardHook = HookRegistry.getHook(WorldGuardHook::class.java) ?: return true
+
+        if (!wgHook.isRegistered) {
+            return true
+        }
+
         val wgLocation = BukkitAdapter.adapt(this.location)
         val container = WorldGuard.getInstance().platform.regionContainer
         val query = container.createQuery()
         val set = query.getApplicableRegions(wgLocation)
         for (region in set) {
-            val flag = region.getFlag(JobsAddons.JOBSADDONS_BLOCK_PAY_FLAG) ?: continue
+            val flag = region.getFlag(wgHook.blockPayFlag) ?: continue
             if (flag) {
                 return false
             }

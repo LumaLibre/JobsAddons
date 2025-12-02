@@ -5,6 +5,10 @@ import dev.jsinco.luma.lumacore.manager.commands.AbstractCommand
 import dev.jsinco.luma.lumacore.manager.commands.CommandInfo
 import dev.jsinco.luma.lumacore.manager.modules.AutoRegister
 import dev.jsinco.luma.lumacore.manager.modules.RegisterType
+import dev.jsinco.luma.lumacore.utility.Text
+import net.lumamc.jobsaddons.events.EvenMoreFishListener.Companion.hasAutoSellPersistentData
+import net.lumamc.jobsaddons.events.EvenMoreFishListener.Companion.removeAutoSellPersistentData
+import net.lumamc.jobsaddons.events.EvenMoreFishListener.Companion.setAutoSellPersistentData
 import net.lumamc.jobsaddons.util.PerksCommandUtil
 import org.bukkit.Material
 import org.bukkit.command.CommandSender
@@ -277,5 +281,24 @@ class TriadCommand : CommandPerk() {
         PerksCommandUtil.potionTag(sender, "pot.resistance", PotionEffectType.RESISTANCE)
         PerksCommandUtil.potionTag(sender, "pot.absorption", PotionEffectType.ABSORPTION)
         PerksCommandUtil.potionTag(sender, "pot.regeneration", PotionEffectType.REGENERATION)
+    }
+}
+
+@AutoRegister(RegisterType.COMMAND)
+@CommandInfo(
+    name = "fishautosell",
+    permission = "jobsaddons.fishautosell",
+    playerOnly = true,
+    aliases = ["fas"]
+)
+class FishAutoSellCommand : CommandPerk() {
+    override fun doAction(sender: Player) {
+        if (sender.hasAutoSellPersistentData()) {
+            sender.removeAutoSellPersistentData()
+            Text.msg(sender, "Disabled auto sell for fishing.")
+        } else {
+            sender.setAutoSellPersistentData()
+            Text.msg(sender, "Enabled auto sell for fishing.")
+        }
     }
 }
