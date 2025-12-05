@@ -25,6 +25,9 @@ dependencies {
     compileOnly("com.github.Zrips:jobs:v4.17.2")
     compileOnly("net.luckperms:api:5.4")
     compileOnly("com.sk89q.worldguard:worldguard-bukkit:7.0.9-beta1")
+    compileOnly("com.gmail.nossr50.mcMMO:mcMMO:2.2.047-CUSTOM") {
+        isTransitive = false
+    }
     implementation("eu.okaeri:okaeri-configs-yaml-bukkit:5.0.5")
     implementation("eu.okaeri:okaeri-configs-serdes-bukkit:5.0.5")
     implementation("com.zaxxer:HikariCP:6.3.0")

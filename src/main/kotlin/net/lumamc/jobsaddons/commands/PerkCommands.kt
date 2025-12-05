@@ -9,7 +9,6 @@ import dev.jsinco.luma.lumacore.utility.Text
 import net.lumamc.jobsaddons.events.EvenMoreFishListener.Companion.hasAutoSellPersistentData
 import net.lumamc.jobsaddons.events.EvenMoreFishListener.Companion.removeAutoSellPersistentData
 import net.lumamc.jobsaddons.events.EvenMoreFishListener.Companion.setAutoSellPersistentData
-import net.lumamc.jobsaddons.events.ItemFilterListener
 import net.lumamc.jobsaddons.util.PerksCommandUtil
 import org.bukkit.Material
 import org.bukkit.command.CommandSender
@@ -286,10 +285,10 @@ class TriadCommand : CommandPerk() {
 
 @AutoRegister(RegisterType.COMMAND)
 @CommandInfo(
-    name = "fishautosell",
-    permission = "jobsaddons.fishautosell",
+    name = "autosellfish",
+    permission = "jobsaddons.autosellfish",
     playerOnly = true,
-    aliases = ["fas"]
+    aliases = ["asf"]
 )
 class FishAutoSellCommand : CommandPerk() {
     override fun doAction(sender: Player) {

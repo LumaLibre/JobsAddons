@@ -78,6 +78,15 @@ class PerksFile : OkaeriConfig() {
             )
             .build())
 
+        add(builder()
+        .job(JobConstant.ALCHEMIST)
+            .level(85)
+            .commandPerk(
+                "malts:malts max stock add {player} 70000",
+                "You have increased your max warehouse stock by 70,000!"
+            )
+            .build())
+
         // Blacksmith
 
         add(builder()
@@ -117,6 +126,15 @@ class PerksFile : OkaeriConfig() {
             .permissionPerk(
                 "eternaltags.tag.blacksmith3",
                 "You have unlocked the <b><#f6e9fb>I<#e8d9eb>r<#dacadb>o<#ccbaca>n<#beaaba>s<#af9aaa>m<#a18b9a>i<#937b89>t<#856b79>h</b><white> tag perk!"
+            )
+            .build())
+
+        add(builder()
+        .job(JobConstant.BLACKSMITH)
+            .level(85)
+            .permissionPerk(
+                "malts.warehouse.mode.click_to_deposit",
+                "You have unlocked the <b><#F7FFC9>Click to Deposit</#F7FFC9></b> warehouse mode perk!"
             )
             .build())
 
@@ -179,6 +197,15 @@ class PerksFile : OkaeriConfig() {
             )
             .build())
 
+        add(builder()
+            .job(JobConstant.BUILDER)
+            .level(85)
+            .permissionPerk(
+                "jobsaddons.recolor",
+                "You have unlocked the <b><#F7FFC9>/recolor</#F7FFC9></b> command perk!"
+            )
+            .build())
+
         // Cook
 
         add(builder()
@@ -218,6 +245,15 @@ class PerksFile : OkaeriConfig() {
             .permissionPerk(
                 "eternaltags.tag.cook3",
                 "You have unlocked the <b><#ffa653>C&#ffa15a>a&#ff9c62>t&#ff9769>e&#ff9170>r&#ff8c78>e&#ff877f>r</#ffa653></b> tag perk!"
+            )
+            .build())
+
+        add(builder()
+            .job(JobConstant.COOK)
+            .level(85)
+            .permissionPerk(
+                "malts.warehouse.mode.click_to_deposit",
+                "You have unlocked the <b><#F7FFC9>Click to Deposit</#F7FFC9></b> warehouse mode perk!"
             )
             .build())
 
@@ -267,6 +303,15 @@ class PerksFile : OkaeriConfig() {
             )
             .build())
 
+        add(builder()
+            .job(JobConstant.DIGGER)
+            .level(85)
+            .permissionPerk(
+                "malts.warehouse.mode.auto_store",
+                "You have unlocked the <b><#F7FFC9>Auto Store</#F7FFC9></b> warehouse mode perk!"
+            )
+            .build())
+
         // Farmer
 
         add(builder()
@@ -306,6 +351,15 @@ class PerksFile : OkaeriConfig() {
             .permissionPerk(
                 "eternaltags.tag.farmer2",
                 "You have unlocked the <b><#9aff98>H<#a1ff8a>a<#a9ff7d>r<#b0ff6f>v<#b8ff62>e<#bfff54>s<#c6ff46>t<#ceff39>e<#d5ff2b>r</b><white> tag perk!"
+            )
+            .build())
+
+        add(builder()
+            .job(JobConstant.FARMER)
+            .level(85)
+            .commandPerk(
+                "safarinet:safarinet give {player} reusable 12",
+                "You have received 12 reusable mob balls!"
             )
             .build())
 
@@ -351,6 +405,15 @@ class PerksFile : OkaeriConfig() {
             )
             .build())
 
+        add(builder()
+            .job(JobConstant.FISHERMAN)
+            .level(85)
+            .permissionPerk(
+                "jobsaddons.autosellfish",
+                "You have unlocked the <b><#F7FFC9>/autosellfish</#F7FFC9></b> command perk!"
+            )
+            .build())
+
         // Hunter
 
         add(builder()
@@ -390,6 +453,15 @@ class PerksFile : OkaeriConfig() {
             .permissionPerk(
                 "eternaltags.tag.hunter3",
                 "You have unlocked the <b><#ff3e14>S<#ee391f>l<#dd332a>a<#cb2e35>y<#ba2840>e<#a9234b>r</b><white> tag perk!"
+            )
+            .build())
+
+        add(builder()
+            .job(JobConstant.HUNTER)
+            .level(85)
+            .permissionPerk(
+                "jobsaddons.itemfilter",
+                "You have unlocked the <b><#F7FFC9>/itemfilter</#F7FFC9></b> command perk!"
             )
             .build())
 
@@ -453,6 +525,15 @@ class PerksFile : OkaeriConfig() {
             )
             .build())
 
+        add(builder()
+            .job(JobConstant.LUMBERJACK)
+            .level(85)
+            .permissionPerk(
+                "jobsaddons.replanttreefeller",
+                "You have unlocked the <b><#F7FFC9>Tree feller auto-replant</#F7FFC9></b> perk!"
+            )
+            .build())
+
         // Miner
 
         add(builder()
@@ -501,6 +582,15 @@ class PerksFile : OkaeriConfig() {
             .permissionPerk(
                 "eternaltags.tag.miner3",
                 "You have unlocked the <b><#ce50fb>C<#d05dfb>a<#d16bfc>v<#d378fc>e<#d586fc>r<#d793fc>n<#d8a1fd>e<#daaefd>r</b><white> tag perk!"
+            )
+            .build())
+
+        add(builder()
+            .job(JobConstant.MINER)
+            .level(85)
+            .permissionPerk(
+                "malts.warehouse.mode.auto_store",
+                "You have unlocked the <b><#F7FFC9>Auto Store</#F7FFC9></b> warehouse mode perk!"
             )
             .build())
     }
