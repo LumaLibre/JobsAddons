@@ -7,8 +7,6 @@ depend:
   - Jobs
 softdepend:
   - WorldGuard
-  - LumaItems
-  - SafariNet
   - EvenMoreFish
 api-version: 1.21
 author: Jsinco

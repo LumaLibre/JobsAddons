@@ -8,8 +8,6 @@ import eu.okaeri.configs.yaml.bukkit.YamlBukkitConfigurer
 import net.lumamc.jobsaddons.configuration.PerksFile
 import net.lumamc.jobsaddons.hooks.HookRegistry.registerHookClass
 import net.lumamc.jobsaddons.hooks.HookRegistry.unregisterAllHooks
-import net.lumamc.jobsaddons.hooks.external.LumaItemsHook
-import net.lumamc.jobsaddons.hooks.external.SafariNetHook
 import net.lumamc.jobsaddons.hooks.external.WorldGuardHook
 import net.lumamc.jobsaddons.storage.DataSource
 import net.lumamc.jobsaddons.util.PerksCommandUtil
@@ -42,8 +40,6 @@ class JobsAddons : JavaPlugin() {
 
     override fun onEnable() {
         DataSource.INSTANCE.createTables()
-        registerHookClass(::LumaItemsHook)
-        registerHookClass(::SafariNetHook)
 
         moduleManager.reflectivelyRegisterModules()
         PERKS = loadOkaeriFile(PerksFile::class.java, "perks.yml")

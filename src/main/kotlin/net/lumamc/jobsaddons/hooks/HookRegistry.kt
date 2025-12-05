@@ -1,8 +1,6 @@
 package net.lumamc.jobsaddons.hooks
 
 import dev.jsinco.luma.lumacore.utility.Logging
-import net.lumamc.jobsaddons.hooks.external.LumaItemsHook
-import net.lumamc.jobsaddons.hooks.external.SafariNetHook
 import net.lumamc.jobsaddons.hooks.external.WorldGuardHook
 import java.util.function.Supplier
 
