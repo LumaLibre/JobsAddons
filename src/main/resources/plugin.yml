@@ -5,8 +5,10 @@ depend:
   - LumaCore
   - LuckPerms
   - Jobs
+  - PlaceholderAPI
 softdepend:
   - WorldGuard
   - EvenMoreFish
+  - Vault
 api-version: 1.21
 author: Jsinco

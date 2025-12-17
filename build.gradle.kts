@@ -17,6 +17,8 @@ repositories {
     maven("https://repo.jsinco.dev/releases")
     maven("https://jitpack.io")
     maven("https://maven.enginehub.org/repo/")
+    maven("https://jitpack.io")
+    maven("https://repo.extendedclip.com/content/repositories/placeholderapi/")
 }
 
 dependencies {
@@ -36,6 +38,10 @@ dependencies {
     compileOnly("dev.jsinco.luma.lumaitems:LumaItems:4c7b569")
     compileOnly("de.Linus122.SafariNet:SafariNet:1.16.29-SNAPSHOT")
     compileOnly("com.oheers.fish:even-more-fish:2.1.5-SNAPSHOT-1.21-RELEASE")
+    compileOnly("com.github.MilkBowl:VaultAPI:1.7") {
+        isTransitive = false
+    }
+    compileOnly("me.clip:placeholderapi:2.11.6")
 }
 
 kotlin {
@@ -66,7 +72,8 @@ tasks {
             url("https://github.com/Zrips/CMILib/releases/download/1.5.7.0/CMILib1.5.7.0.jar")
             url("https://github.com/Zrips/Jobs/releases/download/v5.2.6.3/Jobs5.2.6.3.jar")
             url("https://github.com/MilkBowl/Vault/releases/download/1.7.3/Vault.jar")
-            url("https://ci.ender.zone/job/EssentialsX/lastSuccessfulBuild/artifact/jars/EssentialsX-2.22.0-dev+44-87dfe37.jar")
+            url("https://ci.ender.zone/job/EssentialsX/lastSuccessfulBuild/artifact/jars/EssentialsX-2.22.0-dev+48-b0ef568.jar")
+            modrinth("placeholderapi", "2.11.7")
         }
         minecraftVersion("1.21.10")
     }

@@ -1,9 +1,9 @@
 package net.lumamc.jobsaddons.hooks
 
 import dev.jsinco.luma.lumacore.utility.Logging
-import net.lumamc.jobsaddons.hooks.external.WorldGuardHook
 import java.util.function.Supplier
 
+// todo: probably remove this
 object HookRegistry {
 
     private val HOOKS: MutableList<ExternalHook> = mutableListOf()

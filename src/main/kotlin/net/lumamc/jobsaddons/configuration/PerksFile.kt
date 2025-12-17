@@ -80,7 +80,7 @@ class PerksFile : OkaeriConfig() {
 
         add(builder()
         .job(JobConstant.ALCHEMIST)
-            .level(85)
+            .level(80)
             .commandPerk(
                 "malts:malts max stock add {player} 70000",
                 "You have increased your max warehouse stock by 70,000!"
@@ -131,7 +131,7 @@ class PerksFile : OkaeriConfig() {
 
         add(builder()
         .job(JobConstant.BLACKSMITH)
-            .level(85)
+            .level(80)
             .permissionPerk(
                 "malts.warehouse.mode.click_to_deposit",
                 "You have unlocked the <b><#F7FFC9>Click to Deposit</#F7FFC9></b> warehouse mode perk!"
@@ -199,7 +199,7 @@ class PerksFile : OkaeriConfig() {
 
         add(builder()
             .job(JobConstant.BUILDER)
-            .level(85)
+            .level(80)
             .permissionPerk(
                 "jobsaddons.recolor",
                 "You have unlocked the <b><#F7FFC9>/recolor</#F7FFC9></b> command perk!"
@@ -250,7 +250,7 @@ class PerksFile : OkaeriConfig() {
 
         add(builder()
             .job(JobConstant.COOK)
-            .level(85)
+            .level(80)
             .permissionPerk(
                 "malts.warehouse.mode.click_to_deposit",
                 "You have unlocked the <b><#F7FFC9>Click to Deposit</#F7FFC9></b> warehouse mode perk!"
@@ -305,7 +305,7 @@ class PerksFile : OkaeriConfig() {
 
         add(builder()
             .job(JobConstant.DIGGER)
-            .level(85)
+            .level(80)
             .permissionPerk(
                 "malts.warehouse.mode.auto_store",
                 "You have unlocked the <b><#F7FFC9>Auto Store</#F7FFC9></b> warehouse mode perk!"
@@ -356,7 +356,7 @@ class PerksFile : OkaeriConfig() {
 
         add(builder()
             .job(JobConstant.FARMER)
-            .level(85)
+            .level(80)
             .commandPerk(
                 "safarinet:safarinet give {player} reusable 12",
                 "You have received 12 reusable mob balls!"
@@ -407,7 +407,7 @@ class PerksFile : OkaeriConfig() {
 
         add(builder()
             .job(JobConstant.FISHERMAN)
-            .level(85)
+            .level(80)
             .permissionPerk(
                 "jobsaddons.autosellfish",
                 "You have unlocked the <b><#F7FFC9>/autosellfish</#F7FFC9></b> command perk!"
@@ -458,7 +458,7 @@ class PerksFile : OkaeriConfig() {
 
         add(builder()
             .job(JobConstant.HUNTER)
-            .level(85)
+            .level(80)
             .permissionPerk(
                 "jobsaddons.itemfilter",
                 "You have unlocked the <b><#F7FFC9>/itemfilter</#F7FFC9></b> command perk!"
@@ -527,7 +527,7 @@ class PerksFile : OkaeriConfig() {
 
         add(builder()
             .job(JobConstant.LUMBERJACK)
-            .level(85)
+            .level(80)
             .permissionPerk(
                 "jobsaddons.replanttreefeller",
                 "You have unlocked the <b><#F7FFC9>Tree feller auto-replant</#F7FFC9></b> perk!"
@@ -587,7 +587,7 @@ class PerksFile : OkaeriConfig() {
 
         add(builder()
             .job(JobConstant.MINER)
-            .level(85)
+            .level(80)
             .permissionPerk(
                 "malts.warehouse.mode.auto_store",
                 "You have unlocked the <b><#F7FFC9>Auto Store</#F7FFC9></b> warehouse mode perk!"

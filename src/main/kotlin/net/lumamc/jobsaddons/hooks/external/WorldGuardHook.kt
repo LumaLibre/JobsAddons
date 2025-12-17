@@ -10,7 +10,6 @@ import net.lumamc.jobsaddons.util.ClassUtil
 class WorldGuardHook : ExternalHook() {
 
     override val name = "WorldGuard"
-    override val registerWhen = RegisterWhen.ON_LOAD
 
     override fun canRegister() = ClassUtil.exists("com.sk89q.worldguard.WorldGuard")
 
