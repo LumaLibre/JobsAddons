@@ -16,6 +16,7 @@ object HookRegistry {
                 Logging.log("Skipping hook registration for external plugin: ${hook.name}")
                 return
             }
+            hook.isRegistered = true
             hook.register()
             HOOKS.add(hook)
             Logging.log("Registered hook for external plugin: ${hook.name}")
