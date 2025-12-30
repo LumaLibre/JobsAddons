@@ -1,5 +1,5 @@
 name: JobsAddons
-main: net.lumamc.jobsaddons.JobsAddons
+main: dev.lumas.jobsaddons.JobsAddons
 version: '${version}'
 depend:
   - LumaCore

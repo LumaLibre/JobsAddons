@@ -1,0 +1,88 @@
+package dev.lumas.jobsaddons.util
+
+import io.papermc.paper.threadedregions.scheduler.ScheduledTask
+import dev.lumas.jobsaddons.JobsAddons
+import java.util.concurrent.TimeUnit
+import java.util.function.Consumer
+import org.bukkit.Bukkit
+import org.bukkit.scheduler.BukkitRunnable
+import org.bukkit.scheduler.BukkitTask
+
+object Executors {
+
+    private fun ticksToMillis(ticks: Long): Long {
+        return ticks * 50 // 1 tick = 50 milliseconds
+    }
+
+    fun sync(runnable: Runnable): BukkitTask? {
+        if (Bukkit.isPrimaryThread()) {
+            runnable.run()
+            return null
+        } else {
+            return Bukkit.getScheduler().runTask(JobsAddons.INSTANCE, runnable)
+        }
+    }
+
+    fun syncTimer(delay: Long, period: Long, runnable: Consumer<BukkitRunnable>): BukkitTask {
+        return object : BukkitRunnable() {
+            override fun run() {
+                try {
+                    runnable.accept(this)
+                } catch (e: Exception) {
+                    e.printStackTrace()
+                }
+            }
+        }.runTaskTimer(JobsAddons.INSTANCE, delay, period)
+    }
+
+    fun syncDelayed(delay: Long, runnable: Consumer<BukkitRunnable>): BukkitTask {
+        return object : BukkitRunnable() {
+            override fun run() {
+                try {
+                    runnable.accept(this)
+                } catch (e: Exception) {
+                    e.printStackTrace()
+                }
+            }
+        }.runTaskLater(JobsAddons.INSTANCE, delay)
+    }
+
+    fun async(runnable: Consumer<ScheduledTask>): ScheduledTask {
+        return Bukkit.getAsyncScheduler().runNow(JobsAddons.INSTANCE) { task ->
+            try {
+                runnable.accept(task)
+            } catch (e: Exception) {
+                e.printStackTrace()
+            }
+        }
+    }
+
+    fun asyncTimer(delay: Long, period: Long, runnable: Consumer<ScheduledTask>): ScheduledTask {
+        return Bukkit.getAsyncScheduler().runAtFixedRate(JobsAddons.INSTANCE, Consumer { task ->
+            try {
+                runnable.accept(task)
+            } catch (e: Exception) {
+                e.printStackTrace()
+            }
+        }, ticksToMillis(delay), ticksToMillis(period), TimeUnit.MILLISECONDS)
+    }
+
+    fun asyncDelayed(delay: Long, runnable: Consumer<ScheduledTask>): ScheduledTask {
+        return Bukkit.getAsyncScheduler().runDelayed(JobsAddons.INSTANCE, Consumer { task ->
+            try {
+                runnable.accept(task)
+            } catch (e: Exception) {
+                e.printStackTrace()
+            }
+        }, ticksToMillis(delay), TimeUnit.MILLISECONDS)
+    }
+
+
+    fun <T> (() -> T).sync(): BukkitTask? {
+        return sync { this() }
+    }
+
+    fun <T> (() -> T).async(): ScheduledTask {
+        return async { this() }
+    }
+}

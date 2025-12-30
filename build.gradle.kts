@@ -7,8 +7,8 @@ plugins {
     id("com.gradleup.shadow") version "8.3.5"
 }
 
-group = "net.lumamc.jobsaddons"
-version = "2.0"
+group = "dev.lumas.jobsaddons"
+version = "2.1"
 
 repositories {
     mavenCentral()
@@ -23,7 +23,7 @@ repositories {
 
 dependencies {
     compileOnly("io.papermc.paper:paper-api:1.21.10-R0.1-SNAPSHOT")
-    compileOnly("dev.jsinco.luma.lumacore:LumaCore:776c4e4")
+    compileOnly("dev.lumas.lumacore:LumaCore:d56563b")
     compileOnly("com.github.Zrips:jobs:v4.17.2")
     compileOnly("net.luckperms:api:5.4")
     compileOnly("com.sk89q.worldguard:worldguard-bukkit:7.0.9-beta1")
@@ -35,7 +35,6 @@ dependencies {
     implementation("com.zaxxer:HikariCP:6.3.0")
     testImplementation(kotlin("test"))
 
-    compileOnly("dev.jsinco.luma.lumaitems:LumaItems:4c7b569")
     compileOnly("de.Linus122.SafariNet:SafariNet:1.16.29-SNAPSHOT")
     compileOnly("com.oheers.fish:even-more-fish:2.1.5-SNAPSHOT-1.21-RELEASE")
     compileOnly("com.github.MilkBowl:VaultAPI:1.7") {
@@ -59,8 +58,8 @@ tasks {
     }
 
     shadowJar {
-        relocate("eu.okaeri", "net.lumamc.jobsaddons.libs.okaeri")
-        relocate("com.zaxxer.hikari", "net.lumamc.jobsaddons.libs.hikari")
+        relocate("eu.okaeri", "dev.lumas.jobsaddons.libs.okaeri")
+        relocate("com.zaxxer.hikari", "dev.lumas.jobsaddons.libs.hikari")
         archiveClassifier.set("")
     }
 
