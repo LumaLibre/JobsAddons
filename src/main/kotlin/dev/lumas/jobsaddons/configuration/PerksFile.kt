@@ -29,6 +29,12 @@ class PerksFile : OkaeriConfig() {
         "Whimsical"
     )
 
+    var disabledPotionEffectsWorlds = listOf(
+        "event_new",
+        "sandbox",
+        "build_void"
+    )
+
     // this is tedious as fuck
     var perks: List<JobPerkCluster> = buildList {
 

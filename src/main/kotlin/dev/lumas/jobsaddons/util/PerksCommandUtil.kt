@@ -142,8 +142,14 @@ object PerksCommandUtil {
 
     fun potionEffectRunnable() {
         Bukkit.getScheduler().scheduleSyncRepeatingTask(JobsAddons.INSTANCE, {
-            val players = List.copyOf(Bukkit.getOnlinePlayers())
-            for (player in players) {
+            for (player in Bukkit.getOnlinePlayers()) {
+
+                if (JobsAddons.PERKS.disabledPotionEffectsWorlds.contains(player.world.name)) {
+                    continue
+                }
+
+
+                //TODO rewrite this bs
                 if (player.scoreboardTags.contains("pot.absorption")) {
                     potEffect(player, PotionEffectType.ABSORPTION)
                 }
