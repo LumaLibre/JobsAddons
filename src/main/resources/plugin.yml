@@ -12,3 +12,4 @@ softdepend:
   - Vault
 api-version: 1.21
 author: Jsinco
+folia-supported: true

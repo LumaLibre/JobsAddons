@@ -88,7 +88,7 @@ class JobPerkCluster() : OkaeriConfig() {
             var claimed = 0
             val executedCommands = list.toMutableSet()
 
-            Bukkit.getScheduler().runTask(JobsAddons.INSTANCE, Runnable {
+            Executors.global {
                 for (container in commands.filter { !executedCommands.contains(it.perk) }) {
                     val cmd = container.perk
                     val msg = container.message
@@ -114,7 +114,7 @@ class JobPerkCluster() : OkaeriConfig() {
                 } else {
                     runConsumer(0)
                 }
-            })
+            }
         }
     }
 

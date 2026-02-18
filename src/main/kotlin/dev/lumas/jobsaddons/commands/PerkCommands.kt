@@ -2,19 +2,19 @@
 
 package dev.lumas.jobsaddons.commands
 
+import dev.lumas.jobsaddons.events.EvenMoreFishListener.Companion.hasAutoSellPersistentData
+import dev.lumas.jobsaddons.events.EvenMoreFishListener.Companion.removeAutoSellPersistentData
+import dev.lumas.jobsaddons.events.EvenMoreFishListener.Companion.setAutoSellPersistentData
+import dev.lumas.jobsaddons.util.PerksCommandUtil
+import dev.lumas.jobsaddons.util.Potions
 import dev.lumas.lumacore.manager.commands.AbstractCommand
 import dev.lumas.lumacore.manager.commands.CommandInfo
 import dev.lumas.lumacore.manager.modules.AutoRegister
 import dev.lumas.lumacore.manager.modules.RegisterType
 import dev.lumas.lumacore.utility.Text
-import dev.lumas.jobsaddons.events.EvenMoreFishListener.Companion.hasAutoSellPersistentData
-import dev.lumas.jobsaddons.events.EvenMoreFishListener.Companion.removeAutoSellPersistentData
-import dev.lumas.jobsaddons.events.EvenMoreFishListener.Companion.setAutoSellPersistentData
-import dev.lumas.jobsaddons.util.PerksCommandUtil
 import org.bukkit.Material
 import org.bukkit.command.CommandSender
 import org.bukkit.entity.Player
-import org.bukkit.potion.PotionEffectType
 
 abstract class CommandPerk : AbstractCommand() {
 
@@ -152,7 +152,7 @@ class StripCommand : CommandPerk() {
 )
 class AbsorptionCommand : CommandPerk() {
     override fun doAction(sender: Player) {
-        PerksCommandUtil.potionTag(sender, "pot.absorption", PotionEffectType.ABSORPTION)
+        PerksCommandUtil.potionTag(sender, Potions.ABSORPTION)
     }
 }
 
@@ -165,7 +165,7 @@ class AbsorptionCommand : CommandPerk() {
 )
 class FireResistanceCommand : CommandPerk() {
     override fun doAction(sender: Player) {
-        PerksCommandUtil.potionTag(sender, "pot.fireresistance", PotionEffectType.FIRE_RESISTANCE)
+        PerksCommandUtil.potionTag(sender, Potions.FIRE_RESISTANCE)
     }
 }
 
@@ -178,7 +178,7 @@ class FireResistanceCommand : CommandPerk() {
 )
 class NightVisionCommand : CommandPerk() {
     override fun doAction(sender: Player) {
-        PerksCommandUtil.potionTag(sender, "pot.nightvision", PotionEffectType.NIGHT_VISION)
+        PerksCommandUtil.potionTag(sender, Potions.NIGHT_VISION)
     }
 }
 
@@ -191,7 +191,7 @@ class NightVisionCommand : CommandPerk() {
 )
 class StrengthCommand : CommandPerk() {
     override fun doAction(sender: Player) {
-        PerksCommandUtil.potionTag(sender, "pot.strength", PotionEffectType.STRENGTH)
+        PerksCommandUtil.potionTag(sender, Potions.STRENGTH)
     }
 }
 
@@ -203,7 +203,7 @@ class StrengthCommand : CommandPerk() {
 )
 class HasteCommand : CommandPerk() {
     override fun doAction(sender: Player) {
-        PerksCommandUtil.potionTag(sender, "pot.haste", PotionEffectType.HASTE)
+        PerksCommandUtil.potionTag(sender, Potions.HASTE)
     }
 }
 
@@ -215,7 +215,7 @@ class HasteCommand : CommandPerk() {
 )
 class LuckCommand : CommandPerk() {
     override fun doAction(sender: Player) {
-        PerksCommandUtil.potionTag(sender, "pot.luck", PotionEffectType.LUCK)
+        PerksCommandUtil.potionTag(sender, Potions.LUCK)
     }
 }
 
@@ -228,7 +228,7 @@ class LuckCommand : CommandPerk() {
 )
 class SpeedCommand : CommandPerk() {
     override fun doAction(sender: Player) {
-        PerksCommandUtil.potionTag(sender, "pot.speed", PotionEffectType.SPEED)
+        PerksCommandUtil.potionTag(sender, Potions.SPEED)
     }
 }
 
@@ -241,7 +241,7 @@ class SpeedCommand : CommandPerk() {
 )
 class RegenerationCommand : CommandPerk() {
     override fun doAction(sender: Player) {
-        PerksCommandUtil.potionTag(sender, "pot.regeneration", PotionEffectType.REGENERATION)
+        PerksCommandUtil.potionTag(sender, Potions.REGENERATION)
     }
 }
 
@@ -254,7 +254,7 @@ class RegenerationCommand : CommandPerk() {
 )
 class JumpBoostCommand : CommandPerk() {
     override fun doAction(sender: Player) {
-        PerksCommandUtil.potionTag(sender, "pot.jumpboost", PotionEffectType.JUMP_BOOST)
+        PerksCommandUtil.potionTag(sender, Potions.JUMP_BOOST)
     }
 }
 
@@ -266,7 +266,7 @@ class JumpBoostCommand : CommandPerk() {
 )
 class DolphinsGraceCommand : CommandPerk() {
     override fun doAction(sender: Player) {
-        PerksCommandUtil.potionTag(sender, "pot.dolphinsgrace", PotionEffectType.DOLPHINS_GRACE)
+        PerksCommandUtil.potionTag(sender, Potions.DOLPHINS_GRACE)
     }
 }
 
@@ -278,9 +278,7 @@ class DolphinsGraceCommand : CommandPerk() {
 )
 class TriadCommand : CommandPerk() {
     override fun doAction(sender: Player) {
-        PerksCommandUtil.potionTag(sender, "pot.resistance", PotionEffectType.RESISTANCE)
-        PerksCommandUtil.potionTag(sender, "pot.absorption", PotionEffectType.ABSORPTION)
-        PerksCommandUtil.potionTag(sender, "pot.regeneration", PotionEffectType.REGENERATION)
+        PerksCommandUtil.potionTag(sender, Potions.TRIAD)
     }
 }
 

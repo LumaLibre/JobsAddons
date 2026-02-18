@@ -1,7 +1,7 @@
 package dev.lumas.jobsaddons.util
 
-import dev.lumas.lumacore.utility.Text
 import dev.lumas.jobsaddons.JobsAddons
+import dev.lumas.lumacore.utility.Text
 import org.bukkit.Bukkit
 import org.bukkit.Material
 import org.bukkit.Sound
@@ -9,10 +9,8 @@ import org.bukkit.entity.Player
 import org.bukkit.event.block.BlockPlaceEvent
 import org.bukkit.inventory.EquipmentSlot
 import org.bukkit.inventory.ItemStack
-import org.bukkit.potion.PotionEffect
-import org.bukkit.potion.PotionEffectType
-import java.util.List
 import java.util.Locale
+import java.util.concurrent.TimeUnit
 
 object PerksCommandUtil {
 
@@ -125,66 +123,34 @@ object PerksCommandUtil {
     }
 
 
-    fun potionTag(player: Player, tag: String, potionEffectType: PotionEffectType) {
-        if (player.scoreboardTags.contains(tag)) {
-            player.removeScoreboardTag(tag)
-            player.removePotionEffect(potionEffectType)
+    fun potionTag(player: Player, type: Potions) {
+        if (type.hasKey(player)) {
+            type.removeKey(player)
+            type.undoEffect(player)
         } else {
-            player.addScoreboardTag(tag)
-            player.addPotionEffect(PotionEffect(potionEffectType, 600, 0, true, false, true))
+            type.setKey(player)
+            type.doEffect(player)
         }
         player.playSound(player.location, Sound.ENTITY_GLOW_SQUID_AMBIENT, 1f, 1f)
     }
 
-    fun potEffect(player: Player, potionEffectType: PotionEffectType) {
-        player.addPotionEffect(PotionEffect(potionEffectType, 600, 0, true, false, true))
-    }
 
     fun potionEffectRunnable() {
-        Bukkit.getScheduler().scheduleSyncRepeatingTask(JobsAddons.INSTANCE, {
+        Bukkit.getAsyncScheduler().runAtFixedRate(JobsAddons.INSTANCE, { task ->
             for (player in Bukkit.getOnlinePlayers()) {
-
                 if (JobsAddons.PERKS.disabledPotionEffectsWorlds.contains(player.world.name)) {
                     continue
                 }
 
-
-                //TODO rewrite this bs
-                if (player.scoreboardTags.contains("pot.absorption")) {
-                    potEffect(player, PotionEffectType.ABSORPTION)
-                }
-                if (player.scoreboardTags.contains("pot.fireresistance")) {
-                    potEffect(player, PotionEffectType.FIRE_RESISTANCE)
-                }
-                if (player.scoreboardTags.contains("pot.nightvision")) {
-                    potEffect(player, PotionEffectType.NIGHT_VISION)
-                }
-                if (player.scoreboardTags.contains("pot.strength")) {
-                    potEffect(player, PotionEffectType.STRENGTH)
-                }
-                if (player.scoreboardTags.contains("pot.haste")) {
-                    potEffect(player, PotionEffectType.HASTE)
-                }
-                if (player.scoreboardTags.contains("pot.luck")) {
-                    potEffect(player, PotionEffectType.LUCK)
-                }
-                if (player.scoreboardTags.contains("pot.speed")) {
-                    potEffect(player, PotionEffectType.SPEED)
-                }
-                if (player.scoreboardTags.contains("pot.regeneration")) {
-                    potEffect(player, PotionEffectType.REGENERATION)
-                }
-                if (player.scoreboardTags.contains("pot.jumpboost")) {
-                    potEffect(player, PotionEffectType.JUMP_BOOST)
-                }
-                if (player.scoreboardTags.contains("pot.resistance")) {
-                    potEffect(player, PotionEffectType.RESISTANCE)
-                }
-                if (player.scoreboardTags.contains("pot.dolphinsgrace")) {
-                    potEffect(player, PotionEffectType.DOLPHINS_GRACE)
-                }
+                player.scheduler.run(JobsAddons.INSTANCE, { task ->
+                    for (potion in Potions.entries) {
+                        if (potion.hasKey(player)) {
+                            potion.doEffect(player)
+                        }
+                    }
+                }, null)
             }
-        }, 0L, 200L)
+        }, 0, 10, TimeUnit.SECONDS)
     }
 
 

@@ -3,7 +3,6 @@ package dev.lumas.jobsaddons.events
 import com.gmail.nossr50.events.skills.woodcutting.TreeFellerDestroyTreeEvent
 import dev.lumas.lumacore.manager.modules.AutoRegister
 import dev.lumas.lumacore.manager.modules.RegisterType
-import dev.lumas.jobsaddons.util.Executors
 import org.bukkit.Material
 import org.bukkit.Particle
 import org.bukkit.Sound
@@ -12,6 +11,7 @@ import org.bukkit.event.EventHandler
 import org.bukkit.event.EventPriority
 import org.bukkit.event.Listener
 import org.bukkit.inventory.ItemStack
+import syncDelayed
 
 @AutoRegister(RegisterType.LISTENER)
 class McMMOTreeFellerListener : Listener {
@@ -46,7 +46,7 @@ class McMMOTreeFellerListener : Listener {
                 }
                 factor += 5
 
-                Executors.syncDelayed(REPLANT_DELAY_TICKS + factor) {
+                block.location.syncDelayed(REPLANT_DELAY_TICKS + factor) {
                     if (!player.inventory.contains(saplingMaterial)) {
                         return@syncDelayed
                     }
