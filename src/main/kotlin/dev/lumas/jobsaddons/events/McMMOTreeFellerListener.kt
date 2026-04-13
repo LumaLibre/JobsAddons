@@ -32,33 +32,31 @@ class McMMOTreeFellerListener : Listener {
             return
         }
 
-        Executors.async {
-            var factor = 0L
-            for (block in event.blocks) {
-                val below = block.getRelative(0, -1, 0)
-                if (!LOG_MATCH_ANY_PATTERN.matches(block.type.name) || !SOIL_MATCH_ANY_PATTERN.matches(below.type.name)) {
-                    continue
-                }
+        var factor = 0L
+        for (block in event.blocks) {
+            val below = block.getRelative(0, -1, 0)
+            if (!LOG_MATCH_ANY_PATTERN.matches(block.type.name) || !SOIL_MATCH_ANY_PATTERN.matches(below.type.name)) {
+                continue
+            }
 
-                val saplingMaterial = saplingForWoodType(block.type) ?: continue
+            val saplingMaterial = saplingForWoodType(block.type) ?: continue
+            if (!player.inventory.contains(saplingMaterial)) {
+                continue
+            }
+            factor += 5
+
+            block.location.syncDelayed(REPLANT_DELAY_TICKS + factor) {
                 if (!player.inventory.contains(saplingMaterial)) {
-                    continue
+                    return@syncDelayed
                 }
-                factor += 5
 
-                block.location.syncDelayed(REPLANT_DELAY_TICKS + factor) {
-                    if (!player.inventory.contains(saplingMaterial)) {
-                        return@syncDelayed
-                    }
+                val saplingItem = ItemStack(saplingMaterial, 1)
+                player.inventory.removeItemAnySlot(saplingItem)
 
-                    val saplingItem = ItemStack(saplingMaterial, 1)
-                    player.inventory.removeItemAnySlot(saplingItem)
-
-                    block.blockData = saplingMaterial.createBlockData()
-                    val loc = block.location.toCenterLocation()
-                    block.world.playSound(loc, Sound.ITEM_BOTTLE_FILL, 0.8f, 1.0f)
-                    block.world.spawnParticle(Particle.DUST_PLUME, loc, 10, 0.4, 0.3, 0.4, 0.05)
-                }
+                block.blockData = saplingMaterial.createBlockData()
+                val loc = block.location.toCenterLocation()
+                block.world.playSound(loc, Sound.ITEM_BOTTLE_FILL, 0.8f, 1.0f)
+                block.world.spawnParticle(Particle.DUST_PLUME, loc, 10, 0.4, 0.3, 0.4, 0.05)
             }
         }
     }

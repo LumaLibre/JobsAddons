@@ -87,7 +87,8 @@ object PerksCommandUtil {
     }
 
     fun placeHere(player: Player) {
-        if (player.inventory.itemInMainHand.type == Material.AIR || noPlace(player)) {
+        val type = player.inventory.itemInMainHand.type
+        if (type == Material.AIR || type == Material.SPAWNER || type == Material.WITHER_ROSE || noPlace(player)) {
             Text.msg(player, "You cannot place that block here!")
             return
         }
@@ -97,7 +98,7 @@ object PerksCommandUtil {
             return
         }
         try {
-            block.type = player.inventory.itemInMainHand.type
+            block.type = type
         } catch (_: IllegalArgumentException) {
             Text.msg(player, "You cannot place that block here!")
             return
