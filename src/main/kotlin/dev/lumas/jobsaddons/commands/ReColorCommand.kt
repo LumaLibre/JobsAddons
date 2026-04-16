@@ -22,8 +22,30 @@ import org.bukkit.entity.Player
 class ReColorCommand : AbstractCommand() {
 
     companion object {
-        private val COLORS = listOf("WHITE", "LIGHT_GRAY", "GRAY", "BLACK", "BROWN", "RED", "ORANGE", "YELLOW", "LIME", "GREEN", "CYAN", "LIGHT_BLUE", "BLUE", "PURPLE", "MAGENTA", "PINK")
-        private val DYEABLE_PATTERN = Regex("^(?<base>.+)_((WOOL)|(CARPET)|(CONCRETE)|(CONCRETE_POWDER)|(TERRACOTTA)|(GLAZED_TERRACOTTA)|(STAINED_GLASS)|(STAINED_GLASS_PANE)|(BED)|(SHULKER_BOX)|(CANDLE)|(BANNER))$")
+        private val COLORS = listOf(
+            "WHITE", "LIGHT_GRAY", "GRAY", "BLACK", "BROWN", "RED", "ORANGE", "YELLOW",
+            "LIME", "GREEN", "CYAN", "LIGHT_BLUE", "BLUE", "PURPLE", "MAGENTA", "PINK"
+        )
+        private val COLOR_PREFIX = Regex(
+            "^(WHITE|LIGHT_GRAY|GRAY|BLACK|BROWN|RED|ORANGE|YELLOW|LIME|GREEN|CYAN|LIGHT_BLUE|BLUE|PURPLE|MAGENTA|PINK)_(.+)$"
+        )
+        private val VALID_SUFFIXES = setOf(
+            "WOOL",
+            "CARPET",
+            "CONCRETE",
+            "CONCRETE_POWDER",
+            "TERRACOTTA",
+            "GLAZED_TERRACOTTA",
+            "STAINED_GLASS",
+            "STAINED_GLASS_PANE",
+            "SHULKER_BOX",
+            "BED",
+            "CANDLE",
+            "BANNER",
+            //"BUNDLE",
+            "HARNESS",
+            "DYE"
+        )
     }
 
     override fun handle(sender: CommandSender, label: String, args: Array<String>): Boolean {
@@ -39,27 +61,27 @@ class ReColorCommand : AbstractCommand() {
             return true
         }
 
-        val items = player.inventory.contents
-            .filterNotNull()
-            .filter { itemStack ->
-                !itemStack.hasItemMeta() && DYEABLE_PATTERN.matches(itemStack.type.name)
-            }
+        var changed = 0
 
-        for (item in items) {
-            val matchResult = DYEABLE_PATTERN.find(item.type.name) ?: continue
-            val base = matchResult.groups["base"]?.value ?: continue
-            val newMaterialName = "${color}_${base.substringAfterLast("_")}"
-            val newMaterial = ClassUtil.enumValueOfOrNull(Material::class.java, newMaterialName)
-            newMaterial?.let {
+        for (item in player.inventory.contents.filterNotNull()) {
+            val match = COLOR_PREFIX.matchEntire(item.type.name) ?: continue
+            val suffix = match.groupValues[2]
+            if (suffix !in VALID_SUFFIXES) continue
+
+            val newMaterial = ClassUtil.enumValueOfOrNull(Material::class.java, "${color}_$suffix") ?: continue
+            if (item.type != newMaterial) {
                 @Suppress("DEPRECATION")
-                item.type = it
+                item.type = newMaterial
+                changed += item.amount
             }
         }
-        Text.msg(player, "Recolored ${items.size} items to $name.")
+
+        Text.msg(player, "Recolored $changed item(s) to ${color.lowercase()}.")
         return true
     }
 
-    override fun handleTabComplete(sender: CommandSender, label: String, args: Array<String>): List<String>? {
-        return COLORS.map { it.lowercase() }
+    override fun handleTabComplete(sender: CommandSender, label: String, args: Array<String>): List<String> {
+        val prefix = args.getOrNull(0)?.lowercase() ?: ""
+        return COLORS.map { it.lowercase() }.filter { it.startsWith(prefix) }
     }
 }
