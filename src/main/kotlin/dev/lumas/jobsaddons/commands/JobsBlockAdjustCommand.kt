@@ -49,7 +49,7 @@ class JobsBlockAdjustCommand : AbstractCommand() {
             Action.REMOVE -> (currentAmount - amount).coerceAtLeast(0)
         }
 
-        if (newAmount >= jobsBlockConstant.absoluteMax) {
+        if (newAmount > jobsBlockConstant.absoluteMax) {
             Text.msg(target, "Your ${jobsBlockConstant.name} limit cannot exceed the absolute maximum of ${jobsBlockConstant.absoluteMax}.")
             Text.msg(sender, "Cannot set ${target.name}'s ${jobsBlockConstant.name} limit to $newAmount as it exceeds the absolute maximum of ${jobsBlockConstant.absoluteMax}")
             return true
