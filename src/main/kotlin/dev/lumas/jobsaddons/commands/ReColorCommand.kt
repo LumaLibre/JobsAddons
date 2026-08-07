@@ -10,7 +10,6 @@ import org.bukkit.Material
 import org.bukkit.command.CommandSender
 import org.bukkit.entity.Player
 
-// fixme
 @AutoRegister(RegisterType.COMMAND)
 @CommandInfo(
     name = "recolor",
@@ -23,7 +22,12 @@ class ReColorCommand : AbstractCommand() {
 
     companion object {
         private val COLORS = listOf("WHITE", "LIGHT_GRAY", "GRAY", "BLACK", "BROWN", "RED", "ORANGE", "YELLOW", "LIME", "GREEN", "CYAN", "LIGHT_BLUE", "BLUE", "PURPLE", "MAGENTA", "PINK")
-        private val DYEABLE_PATTERN = Regex("^(?<base>.+)_((WOOL)|(CARPET)|(CONCRETE)|(CONCRETE_POWDER)|(TERRACOTTA)|(GLAZED_TERRACOTTA)|(STAINED_GLASS)|(STAINED_GLASS_PANE)|(BED)|(SHULKER_BOX)|(CANDLE)|(BANNER))$")
+
+        // Longest suffixes first so CONCRETE_POWDER isn't swallowed by CONCRETE, etc.
+        private val TYPES = listOf("CONCRETE_POWDER", "CONCRETE", "GLAZED_TERRACOTTA", "TERRACOTTA", "STAINED_GLASS_PANE", "STAINED_GLASS", "WOOL", "CARPET", "BED", "SHULKER_BOX", "CANDLE", "BANNER")
+
+        // Anchoring on the known colors keeps things like MOSS_CARPET or TUBE_CORAL out of the match.
+        private val DYEABLE_PATTERN = Regex("^(?:${COLORS.joinToString("|")})_(?<type>${TYPES.joinToString("|")})$")
     }
 
     override fun handle(sender: CommandSender, label: String, args: Array<String>): Boolean {
@@ -45,17 +49,18 @@ class ReColorCommand : AbstractCommand() {
                 !itemStack.hasItemMeta() && DYEABLE_PATTERN.matches(itemStack.type.name)
             }
 
+        var recolored = 0
         for (item in items) {
             val matchResult = DYEABLE_PATTERN.find(item.type.name) ?: continue
-            val base = matchResult.groups["base"]?.value ?: continue
-            val newMaterialName = "${color}_${base.substringAfterLast("_")}"
-            val newMaterial = ClassUtil.enumValueOfOrNull(Material::class.java, newMaterialName)
-            newMaterial?.let {
-                @Suppress("DEPRECATION")
-                item.type = it
-            }
+            val type = matchResult.groups["type"]?.value ?: continue
+            val newMaterial = ClassUtil.enumValueOfOrNull(Material::class.java, "${color}_$type") ?: continue
+            if (newMaterial == item.type) continue
+
+            @Suppress("DEPRECATION")
+            item.type = newMaterial
+            recolored++
         }
-        Text.msg(player, "Recolored ${items.size} items to $name.")
+        Text.msg(player, "Recolored $recolored items to $name.")
         return true
     }
 

@@ -73,6 +73,10 @@ object PerksCommandUtil {
         val blankItems = mapOf(Pair("_STAINED_GLASS_PANE", "GLASS_PANE"), Pair("_STAINED_GLASS", "GLASS"), Pair("_SHULKER_BOX", "SHULKER_BOX"), Pair("_CANDLE", "CANDLE"))
 
         val item = player.inventory.itemInMainHand
+        if (item.hasItemMeta()) {  // Don't convert custom items
+            Text.msg(player, "You cannot strip the color from a custom item.")
+            return
+        }
         if (!blacklist.contains(item.type.toString())) {
             for (whiteItem in whiteItems) {
                 if (!item.type.toString().endsWith(whiteItem)) continue
@@ -111,6 +115,7 @@ object PerksCommandUtil {
     fun strip(player: Player) {
         for (item in player.inventory.contents) {
             if (item == null || item.type.toString().contains("STRIPPED_")) continue
+            if (item.hasItemMeta()) continue  // Don't convert custom items
             var logType: String? = null
             if (item.type.toString().endsWith("_LOG")) logType = item.type.toString() else if (item.type.toString()
                     .endsWith("_WOOD")
