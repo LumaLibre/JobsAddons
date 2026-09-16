@@ -5,6 +5,7 @@ import dev.lumas.lumacore.utility.Text
 import org.bukkit.Bukkit
 import org.bukkit.Material
 import org.bukkit.Sound
+import org.bukkit.Tag
 import org.bukkit.entity.Player
 import org.bukkit.event.block.BlockPlaceEvent
 import org.bukkit.inventory.EquipmentSlot
@@ -92,7 +93,7 @@ object PerksCommandUtil {
 
     fun placeHere(player: Player) {
         val type = player.inventory.itemInMainHand.type
-        if (type == Material.AIR || type == Material.SPAWNER || type == Material.WITHER_ROSE || noPlace(player)) {
+        if (type == Material.AIR || type == Material.SPAWNER || type == Material.WITHER_ROSE || Tag.ITEMS_SHULKER_BOXES.isTagged(type) || noPlace(player)) {
             Text.msg(player, "You cannot place that block here!")
             return
         }
