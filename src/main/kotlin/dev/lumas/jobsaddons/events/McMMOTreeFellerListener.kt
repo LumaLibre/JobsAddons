@@ -1,7 +1,6 @@
 package dev.lumas.jobsaddons.events
 
 import com.gmail.nossr50.events.skills.woodcutting.TreeFellerDestroyTreeEvent
-import dev.lumas.jobsaddons.JobsAddons
 import dev.lumas.lumacore.manager.modules.AutoRegister
 import dev.lumas.lumacore.manager.modules.RegisterType
 import org.bukkit.Material
@@ -78,7 +77,7 @@ class McMMOTreeFellerListener : Listener {
             factor += 5
 
             below.location.syncDelayed(REPLANT_DELAY_TICKS + factor) {
-                if (!player.inventory.contains(saplingMaterial)) {
+                if (!player.inventory.contains(saplingMaterial) || !below.type.isAir) {
                     return@syncDelayed
                 }
 
